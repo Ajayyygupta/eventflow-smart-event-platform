@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.eventflow.config.JwtUtil;
 import com.eventflow.entity.User;
 import com.eventflow.repository.UserRepository;
 
@@ -17,6 +18,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
 
     //Register
@@ -40,13 +44,18 @@ public class UserService {
         //Password checck
         if(passwordEncoder.matches(password, user.getPassword())){
 
-            return "Login Succesfull";
+
+            //Generate JWt
+            return jwtUtil.generateToken(email);
+            
+            // return "Login Succesfull";
         }
         throw new RuntimeException("Invalid password");
 
     }
 
 
+    //Select all user from API
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
