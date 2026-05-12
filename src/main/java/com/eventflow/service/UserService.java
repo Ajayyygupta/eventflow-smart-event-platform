@@ -26,20 +26,31 @@ public class UserService {
     //Register
     public User registerUser(User user)
     {
+
+        System.out.println("Service hit");
+
+        //EMAIL CHEACK
         if(userRepository.findByEmail(user.getEmail()).isPresent()){
-            throw new RuntimeException("Email already exist"); }
+            throw new RuntimeException("Email already exist"); 
+        }
 
-            //Encrypt password
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+         //Encrypt password
+        user.setPassword(passwordEncoder.encode(user.getPassword())
+        );
 
-        return userRepository.save(user);
+        //SAVE USER
+        User savedUser = userRepository.save(user);
+        System.out.println(savedUser);
+        return savedUser;
+        // return userRepository.save(user);
     }
 
     //Login
     public String loginUser(String email, String password)
     {
         User user= userRepository.findByEmail(email)
-        .orElseThrow(() -> new RuntimeException("User not found"));
+        .orElseThrow(() -> 
+                new RuntimeException("User not found"));
 
         //Password checck
         if(passwordEncoder.matches(password, user.getPassword())){

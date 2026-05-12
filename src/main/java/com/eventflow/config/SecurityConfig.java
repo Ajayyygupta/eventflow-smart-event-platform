@@ -15,46 +15,53 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
-    public SecurityConfig(JwtFilter jwtFilter)
-    {
-
-        this.jwtFilter=jwtFilter;
-
-    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http
+    ) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable()) //Rest Api ko kallow karta he
-                .authorizeHttpRequests(auth -> auth
+            .csrf(csrf -> csrf.disable())
 
+            .authorizeHttpRequests(auth -> auth
 
-                    //Public APIs
-                    .requestMatchers(
-                        "/api/users/regsiter",
+                // PUBLIC APIs
+                .requestMatchers(
+                        "/api/users/register",
                         "/api/users/login"
-                    ).permitAll()   //postman request block mat kari
+                ).permitAll()
 
 
-                    //Secure APIs
-                    .anyRequest().authenticated()
-                )
+              // ADMIN
+                .requestMatchers(
+                        "/api/users/admin/**"
+                             ).hasRole("ADMIN")
 
-                .addFilterBefore(
-                    jwtFilter, 
+             // ORGANIZER
+                 .requestMatchers(
+                        "/api/users/organizer/**"
+                             ).hasRole("ORGANIZER")
+
+             // USER
+                 .requestMatchers(
+                        "/api/users/user/**"
+                             ).hasRole("USER")
+
+
+                // ALL OTHER APIs
+                .anyRequest().authenticated()
+            )
+
+            .addFilterBefore(
+                    jwtFilter,
                     UsernamePasswordAuthenticationFilter.class
-                );
+            );
 
-                return http.build();
-
-
-                 // .anyRequest().permitAll()  
-                // .formLogin(form -> form.disable());
+        return http.build();
     }
 }

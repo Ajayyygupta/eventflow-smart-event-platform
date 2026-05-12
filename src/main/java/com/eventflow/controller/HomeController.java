@@ -64,6 +64,26 @@ public class HomeController {
     public String profile() {
         return "Welcomd to protected profile API";
     }
+
+     @GetMapping("/admin/dashboard")
+    public String adminDashboard()
+    {
+        return "Welcome admin";
+
+    }
+
+    @GetMapping("/organizer/dashboard")
+    public String organizerDashboard()
+    {
+        return "Welcome organizer";
+    }
+
+    @GetMapping("/user/dashboard")
+    public String userDashboard()
+    {
+    return "Welcome user";
+
+    }
     
 
 
