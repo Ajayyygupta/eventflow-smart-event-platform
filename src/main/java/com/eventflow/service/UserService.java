@@ -44,10 +44,9 @@ public class UserService {
         //Password checck
         if(passwordEncoder.matches(password, user.getPassword())){
 
-
             //Generate JWt
             return jwtUtil.generateToken(email);
-            
+
             // return "Login Succesfull";
         }
         throw new RuntimeException("Invalid password");
