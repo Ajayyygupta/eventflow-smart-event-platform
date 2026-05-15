@@ -9,6 +9,9 @@ import com.eventflow.entity.Booking;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     List<Booking> findByUserEmail(String userEmail);
+
+    //Duplicate booking prevention
+    boolean existsByUserEmailAndEventTitle(String userEmail, String eventTitle);
     
 
 }

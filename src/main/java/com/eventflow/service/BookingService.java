@@ -34,6 +34,14 @@ public class BookingService {
         booking.setEventTitle(event.getTitle());
         booking.setBookingTime(LocalDateTime.now());
 
+
+        //Duplicate Booking prevention
+
+        if(bookingRepository.existsByUserEmailAndEventTitle(userEmail, event.getTitle()))
+        {
+            throw new RuntimeException("You already booked this event");
+        }
+
         return bookingRepository.save(booking);
     }
 
