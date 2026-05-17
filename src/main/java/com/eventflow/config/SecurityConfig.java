@@ -32,8 +32,18 @@ public class SecurityConfig {
 
                 // PUBLIC APIs
                 .requestMatchers(
-                        "/api/users/register",
-                        "/api/users/login"
+                    "/",
+                    "/index.html",
+                    "/login.html",
+                    "/register.html",
+                    "/dashboard.html",
+                    
+                    "/css/**",
+                    "/js/**",
+
+                    "/api/users/register",
+                     "/api/users/login"
+
                 ).permitAll()
 
 
