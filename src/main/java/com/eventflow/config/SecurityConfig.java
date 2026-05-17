@@ -46,6 +46,8 @@ public class SecurityConfig {
                  .requestMatchers(
                         "/api/organizer/**"
                              ).hasAnyRole("ORGANIZER", "ADMIN")
+                //  ).hasRole("ORGANIZER")
+
 
              // USER
                  .requestMatchers(

@@ -28,6 +28,22 @@ public class AdminService {
     //deleete user
     public String deleteUser(Long id)
     {
+
+         User user =userRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Userr not found"));
+
+        System.out.println(user.getRole());
+
+
+        //Protect Admin
+        if(user.getRole().equals("ADMIN"))
+        {
+
+            System.out.println("ADMIN DETECTED");
+            throw new RuntimeException("Cannot delete admin");
+        }
+
+        System.out.println("DELETE EXECUTED");
     
         userRepository.deleteById(id);
         return "User Deleted Suceesfully";
