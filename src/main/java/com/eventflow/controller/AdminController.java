@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.eventflow.dto.DashboardStats;
+import com.eventflow.entity.Event;
 import com.eventflow.entity.User;
 import com.eventflow.service.AdminService;
-
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.eventflow.entity.Event;
 
 
 
@@ -56,9 +54,16 @@ public class AdminController {
 
     //DASHBOARD STATS
     @GetMapping("/stats")
-    public String getStats()
+    public DashboardStats getStats()
     {
-        return "Total Users: " +adminService.getTotalUsers() +" | Total Events: " +adminService.getTotalEvents();
+        // return "Total Users: " +adminService.getTotalUsers()
+        //  +" | Total Events: " +adminService.getTotalEvents();
+
+        return new DashboardStats
+
+                (adminService.getTotalUsers(), 
+                
+                adminService.getTotalEvents());
     }
 
     
