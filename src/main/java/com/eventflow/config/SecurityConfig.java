@@ -39,13 +39,13 @@ public class SecurityConfig {
 
               // ADMIN
                 .requestMatchers(
-                        "/api/users/admin/**"
+                        "/api/admin/**"
                              ).hasRole("ADMIN")
 
              // ORGANIZER
                  .requestMatchers(
-                        "/api/users/organizer/**"
-                             ).hasRole("ORGANIZER")
+                        "/api/organizer/**"
+                             ).hasAnyRole("ORGANIZER", "ADMIN")
 
              // USER
                  .requestMatchers(

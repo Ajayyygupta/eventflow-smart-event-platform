@@ -12,6 +12,9 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     //Duplicate booking prevention
     boolean existsByUserEmailAndEventTitle(String userEmail, String eventTitle);
+
+    //Specific event ki saari registrations laayega
+    List<Booking> findByEventTitle(String eventTitle);
     
 
 }
