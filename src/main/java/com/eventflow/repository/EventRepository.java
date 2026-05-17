@@ -11,4 +11,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
         //Specific event ki saari registrations laayega
         List<Event> findByCreatedBy(String createdBy);
 
+        long count();
+
 }
