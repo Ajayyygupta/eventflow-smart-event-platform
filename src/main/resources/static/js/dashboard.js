@@ -255,13 +255,38 @@
 
         bookedEventIds = [];
 
+        //Agar koy nws booking nahi ki toh uske liyed
+
+        if(bookings.length === 0){
+
+        document.getElementById("bookingContainer").innerHTML = `
+
+         <div class="booking-card text-center">
+
+            <h4 style="color:#6c757d;">
+                😔 No Bookings Yet
+            </h4>
+
+            <p style="margin-top:10px;">
+                You haven’t booked any events yet.
+            </p>
+
+          </div>
+           `;
+ 
+            loadEvents();
+
+             return;
+        }
+        // -------------------
+
         bookings.forEach(booking => {
 
             // comment:
             // store booked ids
-bookedEventIds.push(
-    Number(booking.eventId)
-);
+          bookedEventIds.push(
+          Number(booking.eventId) 
+        );
 
             output += `
 
