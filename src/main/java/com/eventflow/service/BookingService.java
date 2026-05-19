@@ -32,6 +32,8 @@ public class BookingService {
 
         booking.setUserEmail(userEmail);
         booking.setEventTitle(event.getTitle());
+        //for Already Booked accounts jke liyed
+        booking.setEventId(event.getId());
         booking.setBookingTime(LocalDateTime.now());
 
 

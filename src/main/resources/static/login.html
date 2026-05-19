@@ -196,7 +196,11 @@ async function loginUser() {
 
     if(response.ok) {
 
+        //save token 
         localStorage.setItem("token", token);
+ 
+       //user email save
+        localStorage.setItem("userEmail",loginData.email);
 
         alert("Login Successful 🔥");
 

@@ -19,6 +19,9 @@ public class Booking {
     private Long id;
     private  String userEmail;
     private  String eventTitle;
+
+    //  for booked
+    private Long eventId;
     private LocalDateTime bookingTime;
 
 }
