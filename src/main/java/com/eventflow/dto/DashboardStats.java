@@ -9,5 +9,6 @@ public class DashboardStats {
 
     private Long totalUsers;
     private Long totalEvents;
+    private Long totalBookings;
 
 }

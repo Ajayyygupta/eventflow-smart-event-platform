@@ -15,6 +15,8 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     //Specific event ki saari registrations laayega
     List<Booking> findByEventTitle(String eventTitle);
+
+    long count();
     
 
 }

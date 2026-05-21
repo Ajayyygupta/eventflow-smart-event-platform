@@ -5,19 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eventflow.entity.Booking;
 import com.eventflow.entity.Event;
 import com.eventflow.entity.User;
+import com.eventflow.repository.BookingRepository;
 import com.eventflow.repository.EventRepository;
 import com.eventflow.repository.UserRepository;
 
 @Service
 public class AdminService {
 
+    private final BookingRepository bookingRepository;
+
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private EventRepository eventRepository;
+
+    AdminService(BookingRepository bookingRepository) {
+        this.bookingRepository = bookingRepository;
+    }
 
     //Get all useer
     public List<User> getAllUsers()
@@ -63,6 +71,21 @@ public class AdminService {
         return "Event Deleted Successfully";
     }
 
+     //get all bookings
+    public List<Booking> getAllBookings()
+    {
+        return bookingRepository.findAll();
+    }
+
+    //delette booking
+    public String deleteBooking(Long id)
+    {
+        return bookingRepository.findById(id).map(booking -> {
+            bookingRepository.delete(booking);
+            return "Booking Deleted Successfully";
+        }).orElse("Booking Not Found");
+    }
+
     //Total users
     public long getTotalUsers()
     {
@@ -74,6 +97,14 @@ public class AdminService {
     {
         return eventRepository.count();
     }
+
+    //Total bookings
+    public Long getTotalBookings()
+    {
+        return eventRepository.count();
+    }
+
+    
 
 
 }

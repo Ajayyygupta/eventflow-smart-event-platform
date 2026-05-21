@@ -197,7 +197,9 @@ async function loginUser() {
     if(response.ok) {
 
         //save token 
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", token); //trim is important
+
+        
  
        //user email save
         localStorage.setItem("userEmail",loginData.email);

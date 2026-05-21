@@ -1,8 +1,10 @@
 package com.eventflow.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eventflow.dto.DashboardStats;
+import com.eventflow.entity.Booking;
 import com.eventflow.entity.Event;
 import com.eventflow.entity.User;
+import com.eventflow.repository.EventRepository;
 import com.eventflow.service.AdminService;
 
 
@@ -20,8 +24,14 @@ import com.eventflow.service.AdminService;
 @RequestMapping("/api/admin")
 public class AdminController {
 
+    private final EventRepository eventRepository;
     @Autowired
     private AdminService adminService;
+
+
+    AdminController(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
 
 
     //all users
@@ -33,9 +43,12 @@ public class AdminController {
 
     //delete users
     @DeleteMapping("/users/{id}")
-    public String deleteUser(@PathVariable Long id)
+    public ResponseEntity<?> deleteUser(@PathVariable Long id)
     {
-        return adminService.deleteUser(id);
+        adminService.deleteUser(id);
+        return ResponseEntity.ok(
+        Map.of("message", "User Deleted Successfully")
+);
     }
 
     //all events
@@ -47,9 +60,40 @@ public class AdminController {
     
     //delete events
     @DeleteMapping("/events/{id}")
-    public String deleteEvent(@PathVariable Long id)
+    public ResponseEntity<?> deleteEvent(@PathVariable Long id)
     {
-        return adminService.deleteEvent(id);
+
+        adminService.deleteEvent(id);
+        
+        return ResponseEntity.ok(
+            java.util.Map.of(
+                "message",
+                "Event deleted Succesfully"
+            )
+        );
+    }
+
+      @GetMapping("/bookings")
+
+        public List<Booking> getAllBookings(){
+
+        return adminService.getAllBookings();
+
+    }
+
+    //delete bookings
+    @DeleteMapping("/bookings/{id}")
+    public ResponseEntity<?> deleteBooking(@PathVariable Long id)
+    {
+
+        adminService.deleteBooking(id);
+
+        return ResponseEntity.ok(
+            java.util.Map.of(
+                "message",
+                "Booking deleted Succesfully"
+            )
+        );
     }
 
     //DASHBOARD STATS
@@ -63,13 +107,11 @@ public class AdminController {
 
                 (adminService.getTotalUsers(), 
                 
-                adminService.getTotalEvents());
+                adminService.getTotalEvents(),
+
+                adminService.getTotalBookings()
+            
+            );
     }
-
-    
-
-    
-
-
 
 }

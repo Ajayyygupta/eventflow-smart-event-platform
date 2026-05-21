@@ -37,12 +37,19 @@ public class SecurityConfig {
                     "/login.html",
                     "/register.html",
                     "/dashboard.html",
+                    "/admin.html",
+                    
+                    
                     
                     "/css/**",
                     "/js/**",
 
                     "/api/users/register",
-                     "/api/users/login"
+                     "/api/users/login",
+                     "/api/admin/users",
+                     "/api/admin/events",
+                     "/api/admin/bookings",
+                     "/api/admin/stats"
 
                 ).permitAll()
 
