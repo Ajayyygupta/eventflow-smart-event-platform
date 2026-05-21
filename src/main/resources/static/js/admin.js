@@ -122,17 +122,23 @@ async function loadEvents(){
 
                 <td>${event.capacity}</td>
 
-                <td>
+              <td>
 
-                    <button
-                        class="btn btn-danger btn-sm"
-                        onclick="deleteEvent(${event.id})">
+                  <button class="btn btn-warning btn-sm"
+                      onclick="editEvent(${event.id})">
+
+                        Edit
+
+                 </button>
+
+                 <button class="btn btn-danger btn-sm"
+                      onclick="deleteEvent(${event.id})">
 
                         Delete
 
-                    </button>
+                </button>
 
-                </td>
+             </td>
 
             </tr>
             `;
