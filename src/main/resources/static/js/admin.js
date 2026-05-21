@@ -46,6 +46,45 @@ async function loadStats(){
     }
 }
 
+
+
+// =========================
+// CREATE EVENT
+// =========================
+async function createEvent(){
+
+    const event = {
+
+        title: document.getElementById("title").value,
+
+        location: document.getElementById("location").value,
+
+        date: document.getElementById("date").value,
+
+        capacity: document.getElementById("capacity").value,
+
+        description: document.getElementById("description").value
+    };
+
+    await fetch("/api/admin/events",{
+
+        method:"POST",
+
+        headers:{
+
+            "Content-Type":"application/json",
+
+            Authorization:"Bearer " + token
+        },
+
+        body:JSON.stringify(event)
+    });
+
+    alert("Event Created 🔥");
+
+    location.reload();
+}
+
 // =========================
 // LOAD EVENTS
 // =========================
@@ -380,6 +419,44 @@ function logout(){
     localStorage.clear();
 
     window.location.href = "login.html";
+}
+
+
+// =========================
+// CREATE EVENT
+// =========================
+async function createEvent(){
+
+    const event = {
+
+        title: document.getElementById("title").value,
+
+        location: document.getElementById("location").value,
+
+        date: document.getElementById("date").value,
+
+        capacity: document.getElementById("capacity").value,
+
+        description: document.getElementById("description").value
+    };
+
+    await fetch("/api/admin/events",{
+
+        method:"POST",
+
+        headers:{
+
+            "Content-Type":"application/json",
+
+            Authorization:"Bearer " + token
+        },
+
+        body:JSON.stringify(event)
+    });
+
+    alert("Event Created 🔥");
+
+    location.reload();
 }
 
 // =========================
