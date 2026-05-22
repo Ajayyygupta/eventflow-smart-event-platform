@@ -1,65 +1,318 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
 body{
     display:flex;
-    margin:0;
-    font-family:Poppins,sans-serif;
     background:#f4f7fb;
 }
 
+/* SIDEBAR */
+
 .sidebar{
-    width:250px;
+    width:260px;
     height:100vh;
-    background:#0d6efd;
+    background:linear-gradient(
+        180deg,
+        #0d6efd,
+        #001f54
+    );
+
     color:white;
+
     padding:30px;
+
     position:fixed;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-.sidebar h2{
+.logo{
+    font-size:30px;
+    font-weight:700;
     margin-bottom:40px;
 }
 
-.sidebar ul{
+.menu{
     list-style:none;
     padding:0;
 }
 
-.sidebar ul li{
-    padding:15px;
-    cursor:pointer;
-    border-radius:10px;
+.menu li{
+    padding:15px 20px;
     margin-bottom:10px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.sidebar ul li:hover{
-    background:rgba(255,255,255,0.2);
+.menu li:hover,
+.menu .active{
+
+    background:rgba(
+        255,
+        255,
+        255,
+        0.15
+    );
 }
 
-.main-content{
-    margin-left:250px;
-    padding:40px;
+/* MAIN */
+
+.main{
+    margin-left:260px;
     width:100%;
+    padding:40px;
 }
 
-.stats-card{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 4px 20px rgba(0,0,0,0.08);
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
 }
 
-.stats-card h3{
-    font-size:40px;
-    color:#0d6efd;
+.topbar h1{
+    font-size:34px;
+    font-weight:700;
 }
 
-.table-card{
+.topbar p{
+    color:#666;
+}
+
+/* STATS */
+
+.stats-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+}
+
+.card{
     background:white;
     padding:25px;
-    border-radius:20px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    border-radius:24px;
+
+    box-shadow:
+        0 10px 30px rgba(
+            0,
+            0,
+            0,
+            0.06
+        );
 }
 
+.stat-card h3{
+    font-size:42px;
+    color:#0d6efd;
+    font-weight:700;
+}
+
+.stat-card p{
+    margin-top:10px;
+    color:#666;
+}
+
+/* TABLE */
+
 table{
-    margin:0;
+    margin:0 !important;
+}
+
+table th{
+    font-weight:600;
+}
+
+table td{
+    vertical-align:middle;
+}
+
+/* BUTTONS */
+
+.btn-primary{
+    border-radius:12px;
+    padding:10px 18px;
+}
+
+.logout-btn{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    background:white;
+    color:#0d6efd;
+    font-weight:700;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:90px;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .menu li{
+        text-align:center;
+        padding:14px 10px;
+    }
+
+    .main{
+        margin-left:90px;
+    }
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE ADMIN
+========================= */
+
+@media (max-width: 768px) {
+
+    body{
+        overflow-x: hidden;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+
+        position: fixed;
+        top: 0;
+        left: -260px;
+
+        width: 250px;
+        height: 100vh;
+
+        background: #111827;
+        z-index: 2000;
+
+        transition: 0.3s ease;
+
+        padding: 20px;
+    }
+
+    .sidebar.active{
+        left: 0;
+    }
+
+    /* MAIN */
+
+    .main{
+        margin-left: 0 !important;
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* TOPBAR */
+
+    .topbar{
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .topbar h1{
+        font-size: 24px;
+    }
+
+    .topbar p{
+        font-size: 14px;
+    }
+
+    .topbar .btn{
+        width: 100%;
+    }
+
+    /* STATS */
+
+    .stats-grid{
+
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-card{
+        width: 100%;
+    }
+
+    /* TABLE RESPONSIVE */
+
+    .table{
+        min-width: 700px;
+    }
+
+    .card{
+        overflow-x: auto;
+    }
+
+    /* MODAL */
+
+    .modal-dialog{
+        margin: 10px;
+    }
+
+    /* MOBILE MENU BUTTON */
+
+    .mobile-menu-btn{
+
+    position: fixed;
+
+    top: 15px;
+    right: 15px;  
+
+    z-index: 3000;
+
+    border: none;
+    background: #2563eb;
+    color: white;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+    /* OVERLAY */
+
+    .overlay{
+
+        position: fixed;
+        inset: 0;
+
+        background: rgba(0,0,0,0.5);
+
+        z-index: 1500;
+
+        display: none;
+    }
+
+    .overlay.active{
+        display: block;
+    }
 }

@@ -705,6 +705,90 @@ async function addEvent(){
     loadEvents(); // better than reload
 }
 
+
+
+// =========================
+// ANALYTICS CHART
+// =========================
+
+const ctx =
+    document.getElementById(
+        "bookingChart"
+    );
+
+if(ctx){
+
+    new Chart(ctx, {
+
+        type:"bar",
+
+        data:{
+
+            labels:[
+                "Users",
+                "Events",
+                "Bookings"
+            ],
+
+            datasets:[{
+
+                label:"Analytics",
+
+                data:[12,19,7],
+
+                borderWidth:1
+            }]
+        }
+    });
+}
+
+
+function scrollToSection(id) {
+    const section = document.getElementById(id);
+
+    if (section) {
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+/////MEDIAAA QUERYYYYYY
+
+function toggleSidebar(){
+
+    document.querySelector(".sidebar")
+        .classList.toggle("active");
+
+    document.getElementById("overlay")
+        .classList.toggle("active");
+}
+
+
+/* SECTION NAVIGATION */
+
+function scrollToSection(id) {
+
+    const section =
+        document.getElementById(id);
+
+    if(section){
+
+        section.scrollIntoView({
+            behavior: "smooth"
+        });
+
+        /* MOBILE MENU CLOSE */
+
+        document.querySelector(".sidebar")
+            .classList.remove("active");
+
+        document.getElementById("overlay")
+            .classList.remove("active");
+    }
+}
+
+
 // =========================
 // INITIAL LOAD
 // =========================
