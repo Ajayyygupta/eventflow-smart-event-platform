@@ -201,40 +201,88 @@ async function loadStats(){
 // =========================
 // CREATE EVENT
 // =========================
+
 async function createEvent(){
 
-    const event = {
+    try{
 
-        title: document.getElementById("title").value,
+        const event = {
 
-        location: document.getElementById("location").value,
+            title:
+                document.getElementById("title").value,
 
-        date: document.getElementById("date").value,
+            location:
+                document.getElementById("location").value,
 
-        capacity: document.getElementById("capacity").value,
+            date:
+                document.getElementById("date").value,
 
-        description: document.getElementById("description").value
-    };
+            capacity:
+                document.getElementById("capacity").value,
 
-    await fetch("/api/admin/events",{
+            description:
+                document.getElementById("description").value
+        };
 
-        method:"POST",
+        const response = await fetch(
 
-        headers:{
+            "/api/admin/events",
 
-            "Content-Type":"application/json",
+            {
+                method:"POST",
 
-            Authorization:"Bearer " + token
-        },
+                headers:{
 
-        body:JSON.stringify(event)
-    });
+                    "Content-Type":"application/json",
 
-    alert("Event Created 🔥");
+                    Authorization:
+                        "Bearer " + token
+                },
 
-    location.reload();
+                body: JSON.stringify(event)
+            }
+        );
+
+        if(response.ok){
+
+            alert("Event Created Successfully 🔥");
+
+            // CLOSE MODAL
+            const modal =
+                bootstrap.Modal.getInstance(
+                    document.getElementById("eventModal")
+                );
+
+            modal.hide();
+
+            // CLEAR FORM
+            document.getElementById("title").value = "";
+
+            document.getElementById("location").value = "";
+
+            document.getElementById("date").value = "";
+
+            document.getElementById("capacity").value = "";
+
+            document.getElementById("description").value = "";
+
+            // RELOAD EVENTS
+            loadEvents();
+
+            loadStats();
+
+        }else{
+
+            alert("Failed To Create Event");
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+        alert("Server Error");
+    }
 }
-
 // =========================
 // LOAD EVENTS
 // =========================
@@ -623,7 +671,7 @@ function logout(){
 // =========================
 // CREATE EVENT
 // =========================
-async function createEvent(){
+async function addEvent(){
 
     const event = {
 
@@ -654,7 +702,7 @@ async function createEvent(){
 
     alert("Event Created 🔥");
 
-    location.reload();
+    loadEvents(); // better than reload
 }
 
 // =========================
