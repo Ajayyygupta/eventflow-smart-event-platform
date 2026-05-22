@@ -221,7 +221,10 @@ async function createEvent(){
                 document.getElementById("capacity").value,
 
             description:
-                document.getElementById("description").value
+                document.getElementById("description").value,
+
+            createdBy:
+                document.getElementById("createdBy").value
         };
 
         const response = await fetch(
@@ -265,6 +268,8 @@ async function createEvent(){
             document.getElementById("capacity").value = "";
 
             document.getElementById("description").value = "";
+
+            document.getElementById("createdBy").value = "";
 
             // RELOAD EVENTS
             loadEvents();
@@ -367,6 +372,8 @@ async function editEvent(id){
     const capacity = prompt("Enter capacity");
 
     const description = prompt("Enter description");
+
+    // const createdBy = prompt("ADMIN / ORGANIZER")
 
     await fetch(`/api/admin/events/${id}`,{
 
@@ -683,7 +690,9 @@ async function addEvent(){
 
         capacity: document.getElementById("capacity").value,
 
-        description: document.getElementById("description").value
+        description: document.getElementById("description").value,
+
+        createdBy: localStorage.getItem("userEmail")
     };
 
     await fetch("/api/admin/events",{
@@ -753,7 +762,7 @@ function scrollToSection(id) {
         });
     }
 }
-/////MEDIAAA QUERYYYYYY
+/////MEDIAAA QU
 
 function toggleSidebar(){
 
