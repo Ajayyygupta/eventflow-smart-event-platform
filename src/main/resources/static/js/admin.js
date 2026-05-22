@@ -1,4 +1,9 @@
+
+
 const token = localStorage.getItem("token");
+
+// GLOBAL EVENTS ARRAY
+let allEvents = [];
 
 const role = localStorage.getItem("role");
 
@@ -9,6 +14,151 @@ if(!token){
     window.location.href = "login.html";
 }
 
+//  =========================
+// SEarch Event
+// =========================
+// GLOBAL EVENTS ARRAY
+// =========================
+// GLOBAL EVENTS ARRAY
+// =========================
+
+
+// =========================
+// LOAD EVENTS
+// =========================
+
+async function loadEvents(){
+
+    try{
+
+        const response = await fetch(
+
+            "/api/admin/events",
+
+            {
+                headers:{
+                    Authorization:
+                        "Bearer " + token
+                }
+            }
+        );
+
+        const events =
+            await response.json();
+
+        // SAVE GLOBALLY
+        allEvents = events;
+
+        renderEvents(allEvents);
+
+    }catch(error){
+
+        console.log(error);
+    }
+}
+//         alert("Failed To Load Events");
+//     }
+// }
+// =========================
+// RENDER EVENTS
+// =========================
+
+function renderEvents(events){
+
+    let output = "";
+
+    if(events.length === 0){
+
+        output = `
+
+        <tr>
+
+            <td colspan="5"
+                class="text-center">
+
+                No Events Found
+
+            </td>
+
+        </tr>
+        `;
+    }
+
+    events.forEach(event => {
+
+        output += `
+
+        <tr>
+
+            <td>${event.id}</td>
+
+            <td>${event.title}</td>
+
+            <td>${event.location}</td>
+
+            <td>${event.capacity}</td>
+
+            <td>
+
+                <button
+                    class="btn btn-warning btn-sm me-2"
+
+                    onclick="editEvent(${event.id})">
+
+                    Edit
+
+                </button>
+
+                <button
+                    class="btn btn-danger btn-sm"
+
+                    onclick="deleteEvent(${event.id})">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+        `;
+    });
+
+    document.getElementById(
+        "eventTableBody"
+    ).innerHTML = output;
+}
+
+// =========================
+// SEARCH EVENT
+// =========================
+
+function searchEvent(query){
+
+    query = query.toLowerCase();
+
+    const filtered =
+        allEvents.filter(event =>
+
+            String(event.id)
+                .toLowerCase()
+                .includes(query)
+
+            ||
+
+            String(event.title)
+                .toLowerCase()
+                .includes(query)
+
+            ||
+
+            String(event.location)
+                .toLowerCase()
+                .includes(query)
+        );
+
+    renderEvents(filtered);
+}
 // =========================
 // LOAD STATS
 // =========================
@@ -89,69 +239,111 @@ async function createEvent(){
 // LOAD EVENTS
 // =========================
 
-async function loadEvents(){
+// async function loadEvents(){
 
-    try{
+//     try{
 
-        const response = await fetch(
+//         const response = await fetch(
 
-            "/api/admin/events",
+//             "/api/admin/events",
 
-            {
-                headers:{
-                    Authorization: "Bearer " + token
-                }
-            }
-        );
+//             {
+//                 headers:{
+//                     Authorization: "Bearer " + token
+//                 }
+//             }
+//         );
 
-        const events = await response.json();
+//         const events = await response.json();
 
-        let output = "";
+//         let output = "";
 
-        events.forEach(event => {
+//         events.forEach(event => {
 
-            output += `
+//             output += `
 
-            <tr>
+//             <tr>
 
-                <td>${event.id}</td>
+//                 <td>${event.id}</td>
 
-                <td>${event.title}</td>
+//                 <td>${event.title}</td>
 
-                <td>${event.location}</td>
+//                 <td>${event.location}</td>
 
-                <td>${event.capacity}</td>
+//                 <td>${event.capacity}</td>
 
-              <td>
+//               <td>
 
-                  <button class="btn btn-warning btn-sm"
-                      onclick="editEvent(${event.id})">
+//                   <button class="btn btn-warning btn-sm"
+//                       onclick="editEvent(${event.id})">
 
-                        Edit
+//                         Edit
 
-                 </button>
+//                  </button>
 
-                 <button class="btn btn-danger btn-sm"
-                      onclick="deleteEvent(${event.id})">
+//                  <button class="btn btn-danger btn-sm"
+//                       onclick="deleteEvent(${event.id})">
 
-                        Delete
+//                         Delete
 
-                </button>
+//                 </button>
 
-             </td>
+//              </td>
 
-            </tr>
-            `;
-        });
+//             </tr>
+//             `;
+//         });
 
-        document.getElementById(
-            "eventTableBody"
-        ).innerHTML = output;
+//         document.getElementById(
+//             "eventTableBody"
+//         ).innerHTML = output;
 
-    }catch(error){
+//     }catch(error){
 
-        console.log(error);
-    }
+//         console.log(error);
+//     }
+// }
+
+// =========================
+// Edit Event Fucntion
+// =========================
+
+async function editEvent(id){
+
+    const title = prompt("Enter new title");
+
+    const location = prompt("Enter new location");
+
+    const date = prompt("Enter new date");
+
+    const capacity = prompt("Enter capacity");
+
+    const description = prompt("Enter description");
+
+    await fetch(`/api/admin/events/${id}`,{
+
+        method:"PUT",
+
+        headers:{
+
+            "Content-Type":"application/json",
+
+            Authorization:"Bearer " + token
+        },
+
+        body:JSON.stringify({
+
+            title,
+            location,
+            date,
+            capacity,
+            description
+        })
+    });
+
+    alert("Event Updated 🔥");
+
+    loadEvents();
 }
 
 // =========================
