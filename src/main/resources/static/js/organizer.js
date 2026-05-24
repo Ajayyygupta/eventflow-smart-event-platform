@@ -82,13 +82,12 @@ async function loadStats() {
             "totalEvents"
         ).innerText = eventCount;
 
-        // BOOKINGS
+        // ORGANIZER BOOKINGS
 
-        const bookingRes = await apiFetch(
+     const bookingRes = await apiFetch(
 
-            "http://localhost:8080/api/admin/bookings"
-        );
-
+    `http://localhost:8080/api/organizer/bookings/${email}`
+);
         if (!bookingRes) return;
 
         const bookings = await bookingRes.json();
@@ -428,7 +427,6 @@ function openUpdateModal(
 // =========================
 // UPDATE EVENT
 // =========================
-
 async function updateEvent() {
 
     const id = document.getElementById(
@@ -484,7 +482,29 @@ async function updateEvent() {
 
             alert("Event Updated 🔥");
 
+            // CLOSE MODAL
+
+            const modal = bootstrap.Modal.getInstance(
+
+                document.getElementById("updateModal")
+            );
+
+            if (modal) {
+
+                modal.hide();
+            }
+
             loadEvents();
+
+            loadStats();
+
+        } else {
+
+            const errorText = await response.text();
+
+            console.log(errorText);
+
+            alert("Update Failed");
         }
 
     } catch (error) {
@@ -492,6 +512,47 @@ async function updateEvent() {
         console.log("Update Event Error:", error);
     }
 }
+
+// async function editEvent(id){
+
+//     const title = prompt("Enter new title");
+
+//     const location = prompt("Enter new location");
+
+//     const date = prompt("Enter new date");
+
+//     const capacity = prompt("Enter capacity");
+
+//     const description = prompt("Enter description");
+
+//     // const createdBy = prompt("ADMIN / ORGANIZER")
+
+//     await fetch(`/api/organizer/events/${id}`,{
+
+//         method:"PUT",
+
+//         headers:{
+
+//             "Content-Type":"application/json",
+
+//             Authorization:"Bearer " + token
+//         },
+
+//         body:JSON.stringify({
+
+//             title,
+//             location,
+//             date,
+//             capacity,
+//             description
+//         })
+//     });
+
+//     alert("Event Updated 🔥");
+
+//     loadEvents();
+// }
+
 
 // =========================
 // LOAD BOOKINGS
@@ -503,7 +564,7 @@ async function loadBookings() {
 
         const response = await apiFetch(
 
-            "http://localhost:8080/api/admin/bookings"
+            `/api/organizer/bookings/${email}`
         );
 
         if (!response) return;
@@ -570,7 +631,7 @@ async function deleteBooking(id) {
 
         const response = await apiFetch(
 
-            `http://localhost:8080/api/admin/bookings/${id}`,
+            `http://localhost:8080/api/organizer/bookings/${id}`,
 
             {
                 method: "DELETE"

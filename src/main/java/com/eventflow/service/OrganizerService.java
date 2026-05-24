@@ -45,7 +45,9 @@ public class OrganizerService {
     }
 
 
-
-
+    public List<Booking> getOrganizerBookings(String email)
+    {
+        return bookingRepository.findOrganizerBookings(email);
+    }
 
 }

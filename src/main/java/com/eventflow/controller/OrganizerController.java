@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,11 +35,23 @@ public class OrganizerController {
     //create event
     @PostMapping("/events")
     public Event createEvent(@RequestBody Event event) {
-
-      
-        return organizerService.createEvent(event);
-        
+        return organizerService.createEvent(event);   
     }
+
+    //Update event
+       @PutMapping("/events/{id}")
+       public Event updateMyEvent(@PathVariable Long id,@RequestBody Event updated){
+
+       Event event =eventRepository.findById(id).orElseThrow();
+
+        event.setTitle(updated.getTitle());
+        event.setLocation(updated.getLocation());
+        event.setDate(updated.getDate());
+        event.setCapacity(updated.getCapacity());
+        event.setDescription(updated.getDescription());
+
+        return eventRepository.save(event);
+     }
 
     //MY EVENTS
     @GetMapping("/events/{email}")
@@ -57,6 +70,14 @@ public class OrganizerController {
     public int getEventCount(@PathVariable String email) {
         return organizerService.getEventCount(email);
     }
+
+    //Booking event
+    @GetMapping("/bookings/{email}")
+    public List<Booking> getOrganizerBookings(@PathVariable String email) {
+        
+        return organizerService.getOrganizerBookings(email);
+    }
+    
     
     //DELETE EVENT
      @DeleteMapping("/events/{id}")
