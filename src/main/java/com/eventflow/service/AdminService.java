@@ -101,7 +101,7 @@ public class AdminService {
     //Total bookings
     public Long getTotalBookings()
     {
-        return eventRepository.count();
+        return bookingRepository.count();
     }
 
     

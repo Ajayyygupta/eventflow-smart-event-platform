@@ -22,7 +22,8 @@ public class Event {
     private String location;
     private LocalDate date;
     private int capacity;
-    private String createdBy; //organizer email
+    // private String createdBy; //“Kaunsa user/event create kar raha hai”
+    private String organizerEmail;
 
 
 

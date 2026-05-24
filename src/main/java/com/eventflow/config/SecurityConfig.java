@@ -38,6 +38,8 @@ public class SecurityConfig {
                     "/register.html",
                     "/dashboard.html",
                     "/admin.html",
+                    "/organizer.html",
+                
                     
                     
                     
@@ -49,7 +51,11 @@ public class SecurityConfig {
                      "/api/admin/users",
                      "/api/admin/events",
                      "/api/admin/bookings",
-                     "/api/admin/stats"
+                     "/api/admin/stats",
+                     "/api/organizer/events",
+                     "/api/organizer/bookings",
+                     "/api/organizer/stats",
+                     "/api/organizer/email"
 
                 ).permitAll()
 
@@ -65,7 +71,7 @@ public class SecurityConfig {
                              ).hasAnyRole("ORGANIZER", "ADMIN")
                 //  ).hasRole("ORGANIZER")
 
-
+                             
              // USER
                  .requestMatchers(
                         "/api/users/user/**"

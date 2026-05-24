@@ -222,9 +222,7 @@ async function createEvent(){
 
             description:
                 document.getElementById("description").value,
-
-            createdBy:
-                document.getElementById("createdBy").value
+                
         };
 
         const response = await fetch(

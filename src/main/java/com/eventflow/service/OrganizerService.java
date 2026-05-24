@@ -19,10 +19,16 @@ public class OrganizerService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    //GET ORGANIZER EVENTs
-    public List<Event> getOrganizerEvents(String organizerEmail)
+    //CREATE EVENT
+    public Event createEvent(Event event)
     {
-        return eventRepository.findByCreatedBy(organizerEmail);
+        return eventRepository.save(event);
+    }
+
+    //GET ORGANIZER EVENTs
+    public List<Event> getOrganizerEvents(String email)
+    {
+        return eventRepository.findByOrganizerEmail(email);
     }
     
     //VIEW REGISTRATIONS
@@ -33,9 +39,9 @@ public class OrganizerService {
     }
 
     //EVENT COUNT API
-    public int getEventCount(String organizerEmail)
+    public int getEventCount(String email)
     {
-        return eventRepository.findByCreatedBy(organizerEmail).size();
+        return eventRepository.findByOrganizerEmail(email).size();
     }
 
 
