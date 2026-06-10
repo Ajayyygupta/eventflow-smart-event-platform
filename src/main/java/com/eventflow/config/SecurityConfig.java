@@ -39,6 +39,8 @@ public class SecurityConfig {
                     "/dashboard.html",
                     "/admin.html",
                     "/organizer.html",
+                    "/userdashboard.html",
+                    
                 
                     
                     
