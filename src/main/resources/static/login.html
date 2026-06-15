@@ -15,120 +15,229 @@
           rel="stylesheet">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap"
           rel="stylesheet">
 
     <style>
-
-        body{
-            background:#f4f7fb;
-            font-family:'DM Sans',sans-serif;
+        :root {
+            /* Vibrant Dark Theme Gradients */
+            --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+            --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+            /* Premium Dark Mesh Background */
+            --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%), radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
+            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.25);
         }
 
-        .login-card{
-            border:none;
-            border-radius:24px;
-            padding:40px;
-            box-shadow:0 10px 40px rgba(0,0,0,0.08);
+        /* Smooth Scroll and Global Core styling */
+        html {
+            scroll-behavior: smooth;
         }
 
-        .brand{
-            font-family:'Syne',sans-serif;
-            font-weight:800;
-            font-size:32px;
+        body {
+            background: var(--bg-light-mesh);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #E5E7EB;
+            min-height: 100vh;
         }
 
-        .brand span{
-            color:#0d6efd;
+        /* Premium Dark Navbar Overhaul */
+        .navbar {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(11, 15, 25, 0.75) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
         }
 
-        .main-title{
-            font-family:'Syne',sans-serif;
-            font-weight:800;
-            font-size:38px;
+        .brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            color: #FFFFFF !important;
         }
 
-        .form-control{
-            height:55px;
-            border-radius:14px;
+        .brand span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .btn-login{
-            height:55px;
-            border-radius:14px;
-            font-size:18px;
-            font-weight:600;
+        /* Outline Register Button Customization */
+        .btn-outline-primary {
+            border: 2px solid #374151 !important;
+            color: #E5E7EB !important;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
-        .role-options{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:10px;
-            margin-bottom:20px;
+        .btn-outline-primary:hover {
+            background-color: #FFFFFF !important;
+            color: #0B0F19 !important;
+            border-color: #FFFFFF !important;
+            transform: translateY(-3px);
         }
 
-        .role-option{
-            position:relative;
+        /* Glassmorphic Login Panel Dashboard */
+        .login-card {
+            background: rgba(31, 41, 55, 0.4) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--card-shadow) !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .role-option input{
-            position:absolute;
-            opacity:0;
-            pointer-events:none;
+        .login-card:hover {
+            border-color: rgba(99, 102, 241, 0.3) !important;
+            box-shadow: var(--hover-shadow) !important;
         }
 
-        .role-card{
-            border:2px solid #e9ecef;
-            border-radius:14px;
-            padding:14px 8px;
-            text-align:center;
-            cursor:pointer;
-            transition:all 0.2s ease;
-            background:#fff;
-            height:100%;
+        .main-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 38px;
+            color: #FFFFFF;
         }
 
-        .role-card:hover{
-            border-color:#0d6efd;
-            background:#f8fbff;
+        .text-secondary {
+            color: #9CA3AF !important;
         }
 
-        .role-option input:checked + .role-card{
-            border-color:#0d6efd;
-            background:#eef5ff;
-            box-shadow:0 0 0 3px rgba(13,110,253,0.15);
+        /* Inputs Core Overhaul */
+        .form-control {
+            height: 55px;
+            border-radius: 14px;
+            background-color: rgba(17, 24, 39, 0.6) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #FFFFFF !important;
+            padding: 0.75rem 1.25rem;
+            transition: all 0.3s ease;
         }
 
-        .role-icon{
-            font-size:24px;
-            display:block;
-            margin-bottom:6px;
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+            border-color: #6366F1 !important;
         }
 
-        .role-label{
-            font-size:13px;
-            font-weight:600;
-            color:#212529;
+        .form-control::placeholder {
+            color: #6B7280;
         }
 
+        /* Primary Submit Action Trigger Button */
+        .btn-login {
+            background: var(--primary-gradient) !important;
+            border: none !important;
+            height: 55px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px 0 rgba(99, 102, 241, 0.6);
+        }
+
+        /* =========================
+           ADVANCED ROLE SELECTION CARDS
+        ========================= */
+        .role-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .role-option {
+            position: relative;
+        }
+
+        .role-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .role-card {
+            background: rgba(17, 24, 39, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 14px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+        }
+
+        .role-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
+        }
+
+        /* CSS Trigger on Checked element state mapping layout perfectly */
+        .role-option input:checked + .role-card {
+            border-color: #a855f7 !important;
+            background: rgba(168, 85, 247, 0.12) !important;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
+        }
+
+        .role-option input:checked + .role-card .role-label {
+            color: #FFFFFF !important;
+        }
+
+        .role-icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 6px;
+            transition: transform 0.3s ease;
+        }
+        
+        .role-card:hover .role-icon {
+            transform: scale(1.15);
+        }
+
+        .role-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #9CA3AF;
+            transition: color 0.3s ease;
+        }
+
+        /* Footer Redirection Anchor Properties */
+        .login-card a {
+            color: #A855F7 !important;
+            transition: color 0.3s ease;
+        }
+
+        .login-card a:hover {
+            color: #EC4899 !important;
+        }
+
+        /* Custom Scrollbar configuration */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#6366F1, #A855F7);
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(#A855F7, #EC4899);
+        }
     </style>
 
 </head>
 
 <body>
-
-    <!-- <button class="mobile-menu-btn"
-        onclick="toggleSidebar()">
-
-    ☰
-
-</button> -->
-<!-- 
-<div class="overlay"
-     id="overlay"
-     onclick="toggleSidebar()">
-
-</div> -->
 
 <!-- ================= NAVBAR ================= -->
 

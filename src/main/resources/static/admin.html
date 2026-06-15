@@ -1,370 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <style>
+        :root {
+            /* Vibrant Dark Theme Gradients */
+            --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+            --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+            /* Premium Dark Mesh Background */
+            --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%), radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
+            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.25);
+            --sidebar-width: 260px;
+        }
 
-    <link rel="stylesheet"
-          href="/css/admin.css">
+        /* Smooth Scroll and Reset */
+        html {
+            scroll-behavior: smooth;
+        }
 
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-light-mesh);
+            overflow-x: hidden;
+            color: #E5E7EB;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, .logo {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: -0.01em;
+            color: #FFFFFF;
+        }
+
+        /* Typography Helper Overrides */
+        p { color: #9CA3AF !important; }
+        .text-primary {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Layout Structure Styling */
+        .main {
+            margin-left: var(--sidebar-width);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Topbar styling */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Premium Glassmorphic Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background: rgba(11, 15, 25, 0.85) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1040;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Sidebar Navigation Menu */
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            padding: 0.85rem 1.25rem;
+            border-radius: 0.75rem;
+            color: #9CA3AF;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu li:hover {
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
+
+        .menu li.active {
+            background: var(--primary-gradient) !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Action Buttons */
+        .btn-primary {
+            background: var(--primary-gradient) !important;
+            border: none !important;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.6);
+        }
+
+        .logout-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .logout-btn:hover {
+            background: #EF4444;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Trigger Button */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1060;
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.5rem 0.85rem;
+            border-radius: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Stats Grid Setup */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Premium Dashboard Cards */
+        .card {
+            background: rgba(31, 41, 55, 0.4) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 1.25rem !important;
+            padding: 1.75rem;
+            box-shadow: var(--card-shadow) !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--hover-shadow) !important;
+            border-color: rgba(99, 102, 241, 0.3) !important;
+            background: rgba(31, 41, 55, 0.5) !important;
+        }
+
+        .stat-card h3 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Premium Tables Dark Theme */
+        .table {
+            color: #E5E7EB !important;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+        .table :not(caption) > * > * {
+            background-color: transparent !important;
+            color: inherit !important;
+            border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+            padding: 1rem 0.75rem;
+        }
+        thead th {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: #FFFFFF !important;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Inputs Optimization */
+        .form-control {
+            background-color: rgba(17, 24, 39, 0.6) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #FFFFFF !important;
+            border-radius: 0.75rem;
+            padding: 0.65rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+            border-color: #6366F1 !important;
+        }
+        .form-control::placeholder {
+            color: #6B7280;
+        }
+
+        /* Glassmorphic Modals */
+        .modal-content {
+            background: rgba(17, 24, 39, 0.85) !important;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 1.5rem !important;
+            color: #E5E7EB;
+        }
+        .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Custom Cyberpunk Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#6366F1, #A855F7);
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(#A855F7, #EC4899);
+        }
+
+        /* Smooth Mobile Responsiveness Layer */
+        @media (max-width: 991px) {
+            .sidebar {
+                left: calc(-1 * var(--sidebar-width));
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .main {
+                margin-left: 0;
+                padding: 1.5rem;
+                padding-top: 4.5rem;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(0,0,0,0.6);
+                z-index: 1030;
+                backdrop-filter: blur(4px);
+            }
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <button class="mobile-menu-btn"
-        onclick="toggleSidebar()">
+<button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-    ☰
-
-</button>
-
-<div class="overlay"
-     id="overlay"
-     onclick="toggleSidebar()">
-
-</div>
-
-<div class="sidebar">
-
+<div class="sidebar" id="sidebar">
     <div>
-
-        <h2 class="logo">
-            ⚡ EventFlow
-        </h2>
-
+        <h2 class="logo">⚡ EventFlow</h2>
         <ul class="menu">
-
-    <li class="active" onclick="scrollToSection('dashboardSection')">
-        Dashboard
-    </li>
-
-    <li onclick="scrollToSection('eventsSection')">
-        Events
-    </li>
-
-    <li onclick="scrollToSection('usersSection')">
-        Users
-    </li>
-
-    <li onclick="scrollToSection('bookingsSection')">
-        Bookings
-    </li>
-
-</ul>
-
+            <li class="active" onclick="scrollToSection('main')">Dashboard</li>
+            <li onclick="scrollToSection('eventsSection')">Events</li>
+            <li onclick="scrollToSection('usersSection')">Users</li>
+            <li onclick="scrollToSection('bookingsSection')">Bookings</li>
+        </ul>
     </div>
-
-    <button class="logout-btn"
-            onclick="logout()">
-
-        Logout
-
-    </button>
-
+    <button class="logout-btn" onclick="logout()">Logout</button>
 </div>
 
 <div class="main">
-
-    <!-- TOPBAR -->
-
     <div class="topbar">
-
         <div>
-
-            <h1>
-                Admin Dashboard
-            </h1>
-
-            <p>
-                Welcome Back Admin 👋
-            </p>
-
+            <h1>Admin Dashboard</h1>
+            <p>Welcome Back Admin 👋</p>
         </div>
-
-        <button class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#eventModal">
-
-            + Add Event
-
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal">
+            <i class="fa-solid fa-plus me-2"></i>Add Event
         </button>
-
     </div>
-
-    <!-- STATS -->
 
     <div class="stats-grid">
-
         <div class="card stat-card">
-
-            <h3 id="totalUsers">
-                0
-            </h3>
-
-            <p>
-                Total Users
-            </p>
-
+            <h3 id="totalUsers">0</h3>
+            <p class="mb-0">Total Users</p>
         </div>
-
         <div class="card stat-card">
-
-            <h3 id="totalEvents">
-                0
-            </h3>
-
-            <p>
-                Total Events
-            </p>
-
+            <h3 id="totalEvents">0</h3>
+            <p class="mb-0">Total Events</p>
         </div>
-
         <div class="card stat-card">
-
-            <h3 id="totalBookings">
-                0
-            </h3>
-
-            <p>
-                Total Bookings
-            </p>
-
+            <h3 id="totalBookings">0</h3>
+            <p class="mb-0">Total Bookings</p>
         </div>
-
     </div>
 
-    <!-- CHART -->
-
     <div class="card mt-4">
-
-        <h3 class="mb-4">
-            Analytics
-        </h3>
-
-        <canvas id="bookingChart">
-
-        </canvas>
-
-    </div>
-
-    <!-- EVENTS -->
-
-    <div class="card mt-4">
-
-        <div class="d-flex
-                    justify-content-between
-                    align-items-center
-                    mb-3">
-
-            <h3 id="eventsSection">
-                Events
-            </h3>
-
+        <h3 class="mb-4">Analytics</h3>
+        <div style="position: relative; width: 100%; max-height: 350px;">
+            <canvas id="bookingChart"></canvas>
         </div>
-
-        <input type="text"
-               class="form-control mb-3"
-               placeholder="Search events..."
-               onkeyup="searchEvent(this.value)">
-
-        <table class="table">
-
-            <thead>
-
-            <tr>
-
-                <th>ID</th>
-                <th>Title</th>
-                <th>Location</th>
-                <th>Capacity</th>
-                <th>Actions</th>
-                <!-- <th>createdby</th> -->
-
-            </tr>
-
-            </thead>
-
-            <tbody id="eventTableBody">
-
-            </tbody>
-
-        </table>
-
     </div>
 
-    <!-- USERS -->
-
-    <div class="card mt-4">
-
-        <h3 class="mb-3" id=""usersSection>
-            Users
-        </h3>
-
-        <table class="table">
-
-            <thead>
-
-            <tr>
-
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Action</th>
-
-            </tr>
-
-            </thead>
-
-            <tbody id="userTableBody">
-
-            </tbody>
-
-        </table>
-
+    <div class="card mt-4" id="eventsSection">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3>Events</h3>
+        </div>
+        <input type="text" class="form-control mb-3" placeholder="Search events..." onkeyup="searchEvent(this.value)">
+        <div class="table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                        <th>Capacity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="eventTableBody">
+                    </tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- BOOKINGS -->
-
-    <div class="card mt-4">
-
-        <h3 class="mb-3" id="usersSection">
-            Bookings
-        </h3>
-
-        <table class="table">
-
-            <thead>
-
-            <tr>
-
-                <th>ID</th>
-                <th>User</th>
-                <th>Event</th>
-                <th>Time</th>
-                <th>Action</th>
-
-            </tr>
-
-            </thead>
-
-            <tbody id="bookingTableBody">
-
-            </tbody>
-
-        </table>
-
+    <div class="card mt-4" id="usersSection">
+        <h3 class="mb-3">Users</h3>
+        <div class="table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    </tbody>
+            </table>
+        </div>
     </div>
 
+    <div class="card mt-4" id="bookingsSection">
+        <h3 class="mb-3">Bookings</h3>
+        <div class="table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Event</th>
+                        <th>Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingTableBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
-<!-- EVENT MODAL -->
-
-<div class="modal fade"
-     id="eventModal">
-
-    <div class="modal-dialog">
-
+<div class="modal fade" id="eventModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-
-            <div class="modal-header">
-
-                <h5>
-                    Add Event
-                </h5>
-
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold text-white">Add New Event</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#eventModal"></button>
             </div>
-
             <div class="modal-body">
-
-                <input type="text"
-                       id="title"
-                       class="form-control mb-3"
-                       placeholder="Title">
-
-                <input type="text"
-                       id="location"
-                       class="form-control mb-3"
-                       placeholder="Location">
-
-                <input type="date"
-                       id="date"
-                       class="form-control mb-3">
-
-                <input type="number"
-                       id="capacity"
-                       class="form-control mb-3"
-                       placeholder="Capacity">
-
-                <textarea id="description"
-                          class="form-control mb-3"
-                          placeholder="Description"></textarea>
-
-               <button class="btn btn-primary" onclick="createEvent()">Create Event</button>
-                        onclick="create ()">
-
-                    Create Event
-
-                </button>
-
+                <input type="text" id="title" class="form-control mb-3" placeholder="Title">
+                <input type="text" id="location" class="form-control mb-3" placeholder="Location">
+                <input type="date" id="date" class="form-control mb-3">
+                <input type="number" id="capacity" class="form-control mb-3" placeholder="Capacity">
+                <textarea id="description" class="form-control mb-4" placeholder="Description" rows="3"></textarea>
+                <button class="btn btn-primary w-100 py-2.5" onclick="createEvent()">Create Event</button>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script src="/js/admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+// Mobile Sidebar Toggle Logic
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
 
-const ctx =
-    document.getElementById(
-        "bookingChart"
-    );
+// Smooth Section Navigation Logic 
+function scrollToSection(id) {
+    const element = document.getElementById(id) || document.querySelector('.' + id);
+    if(element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Mobile view fallback closure
+    if(window.innerWidth <= 991) {
+        toggleSidebar();
+    }
+}
 
+// Neon Theme Colored Chart Setup
+const ctx = document.getElementById("bookingChart");
 if(ctx){
-
     new Chart(ctx, {
-
-        type:"bar",
-
-        data:{
-
-            labels:[
-                "Users",
-                "Events",
-                "Bookings"
-            ],
-
-            datasets:[{
-
-                label:"Analytics",
-
-                data:[12,19,7],
-
-                borderWidth:1
+        type: "bar",
+        data: {
+            labels: ["Users", "Events", "Bookings"],
+            datasets: [{
+                label: "Platform Metrics",
+                data: [12, 19, 7],
+                backgroundColor: [
+                    'rgba(99, 102, 241, 0.6)',
+                    'rgba(168, 85, 247, 0.6)',
+                    'rgba(236, 72, 153, 0.6)'
+                ],
+                borderColor: [
+                    '#6366F1',
+                    '#A855F7',
+                    '#EC4899'
+                ],
+                borderWidth: 2,
+                borderRadius: 6
             }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: '#9CA3AF', font: { family: 'Plus Jakarta Sans' } } }
+            },
+            scales: {
+                y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#9CA3AF' } },
+                x: { grid: { display: false }, ticks: { color: '#9CA3AF' } }
+            }
         }
     });
 }
-
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
 </body>
 </html>
