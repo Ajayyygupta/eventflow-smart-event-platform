@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eventflow.dto.LoginRequest;
+import com.eventflow.dto.LoginResponse;
 import com.eventflow.entity.User;
 import com.eventflow.service.UserService;
 
@@ -44,14 +45,12 @@ public class HomeController {
     }
    }
 
-    // LoGIN
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginRequest request) {
-        
+    public LoginResponse loginUser(@RequestBody LoginRequest request) {
         return userService.loginUser(
             request.getEmail(),
             request.getPassword()
-        );    
+        );
     }
     
 

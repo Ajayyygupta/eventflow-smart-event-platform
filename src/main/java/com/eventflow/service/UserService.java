@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.eventflow.config.JwtUtil;
+import com.eventflow.dto.LoginResponse;
 import com.eventflow.entity.User;
 import com.eventflow.repository.UserRepository;
 
@@ -45,23 +46,20 @@ public class UserService {
         // return userRepository.save(user);
     }
 
-    //Login
-    public String loginUser(String email, String password)
-    {
-        User user= userRepository.findByEmail(email)
-        .orElseThrow(() -> 
-                new RuntimeException("User not found"));
+    public LoginResponse loginUser(String email, String password) {
+        String normalizedEmail = email.trim().toLowerCase();
 
-        //Password checck
-        if(passwordEncoder.matches(password, user.getPassword())){
+        User user = userRepository.findByEmail(normalizedEmail)
+                .or(() -> userRepository.findByEmail(email.trim()))
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-            //Generate JWt
-            return jwtUtil.generateToken(email);
-
-            // return "Login Succesfull";
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid password");
         }
-        throw new RuntimeException("Invalid password");
 
+        String token = jwtUtil.generateToken(user.getEmail());
+        String role = user.getRole() != null ? user.getRole().trim().toUpperCase() : "USER";
+        return new LoginResponse(token, role, user.getEmail());
     }
 
 
