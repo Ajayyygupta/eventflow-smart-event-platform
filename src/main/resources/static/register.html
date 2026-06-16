@@ -20,19 +20,14 @@
 
     <style>
         :root {
-            /* Vibrant Dark Theme Gradients */
             --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
             --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
-            /* Premium Dark Mesh Background */
             --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%), radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
             --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
             --hover-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.25);
         }
 
-        /* Smooth Scroll and Core Layout */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             background: var(--bg-light-mesh);
@@ -41,7 +36,6 @@
             min-height: 100vh;
         }
 
-        /* Premium Premium Navbar */
         .navbar {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -62,7 +56,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Outline Button Override */
         .btn-outline-primary {
             border: 2px solid #374151 !important;
             color: #E5E7EB !important;
@@ -77,7 +70,6 @@
             transform: translateY(-3px);
         }
 
-        /* Register Card Glassmorphism */
         .register-card {
             background: rgba(31, 41, 55, 0.4) !important;
             backdrop-filter: blur(16px);
@@ -101,11 +93,8 @@
             color: #FFFFFF;
         }
 
-        .text-secondary {
-            color: #9CA3AF !important;
-        }
+        .text-secondary { color: #9CA3AF !important; }
 
-        /* Form Inputs Customization */
         .form-control,
         .form-select {
             height: 55px;
@@ -123,17 +112,13 @@
             border-color: #6366F1 !important;
         }
 
-        .form-control::placeholder {
-            color: #6B7280;
-        }
+        .form-control::placeholder { color: #6B7280; }
 
-        /* Dropdown options dark fix */
         .form-select option {
             background-color: #111827;
             color: #FFFFFF;
         }
 
-        /* Primary Register Button */
         .btn-register {
             background: var(--primary-gradient) !important;
             border: none !important;
@@ -151,23 +136,42 @@
             box-shadow: 0 8px 25px 0 rgba(99, 102, 241, 0.6);
         }
 
-        /* Link Customization */
+        .btn-register:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .register-card a {
             color: #A855F7 !important;
             transition: color 0.3s ease;
         }
 
-        .register-card a:hover {
-            color: #EC4899 !important;
+        .register-card a:hover { color: #EC4899 !important; }
+
+        /* Error / Success message */
+        .alert-box {
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-weight: 500;
+            display: none;
+            margin-bottom: 16px;
         }
 
-        /* Custom Premium Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .alert-box.error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #FCA5A5;
         }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
+
+        .alert-box.success {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #86EFAC;
         }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(#6366F1, #A855F7);
             border-radius: 20px;
@@ -181,184 +185,160 @@
 
 <body>
 
-<!-- ---------------NAVBAR--------------- -->
-
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom py-3">
-
     <div class="container">
-
         <a class="navbar-brand brand" href="#">
             Event<span>Flow</span>
         </a>
-
-        <a href="login.html"
-           class="btn btn-outline-primary rounded-pill px-4">
+        <a href="login.html" class="btn btn-outline-primary rounded-pill px-4">
             Login
         </a>
-
     </div>
-
 </nav>
 
-<!-- -------------------REGISTER SECTION------------------- -->
-
+<!-- REGISTER SECTION -->
 <div class="container py-5">
-
     <div class="row justify-content-center">
-
         <div class="col-lg-6">
-
             <div class="card register-card">
 
                 <div class="text-center mb-4">
-
-                    <h1 class="main-title">
-                        Create Account 
-                    </h1>
-
-                    <p class="text-secondary">
-                        Join EventFlow and start your journey
-                    </p>
-
+                    <h1 class="main-title">Create Account</h1>
+                    <p class="text-secondary">Join EventFlow and start your journey</p>
                 </div>
 
+                <!-- Alert Box -->
+                <div id="alertBox" class="alert-box"></div>
+
                 <!-- Name -->
-
                 <div class="mb-3">
-
-                    <label class="form-label fw-semibold">
-                        Full Name
-                    </label>
-
-                    <input type="text"
-                           id="name"
-                           class="form-control"
-                           placeholder="Enter your name">
-
+                    <label class="form-label fw-semibold">Full Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name">
                 </div>
 
                 <!-- Email -->
-
                 <div class="mb-3">
-
-                    <label class="form-label fw-semibold">
-                        Email Address
-                    </label>
-
-                    <input type="email"
-                           id="email"
-                           class="form-control"
-                           placeholder="Enter your email">
-
+                    <label class="form-label fw-semibold">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
                 </div>
 
                 <!-- Password -->
-
                 <div class="mb-3">
-
-                    <label class="form-label fw-semibold">
-                        Password
-                    </label>
-
-                    <input type="password"
-                           id="password"
-                           class="form-control"
-                           placeholder="Enter your password">
-
+                    <label class="form-label fw-semibold">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
                 </div>
 
                 <!-- Role -->
-
                 <div class="mb-4">
-
-                    <label class="form-label fw-semibold">
-                        Select Role
-                    </label>
-
-                    <select id="role"
-                            class="form-select">
-
-                        <option value="USER">
-                             USER
-                        </option>
-
-                        <option value="ORGANIZER">
-                             ORGANIZER
-                        </option>
-
+                    <label class="form-label fw-semibold">Select Role</label>
+                    <select id="role" class="form-select">
+                        <option value="USER">USER</option>
+                        <option value="ORGANIZER">ORGANIZER</option>
                     </select>
-
                 </div>
 
                 <!-- Button -->
-
-                <button class="btn btn-primary w-100 btn-register"
-                        onclick="registerUser()">
-
+                <button id="registerBtn" class="btn btn-primary w-100 btn-register" onclick="registerUser()">
                     Create Account
-
                 </button>
 
                 <p class="text-center text-secondary mt-4 mb-0">
-
                     Already have an account?
-
-                    <a href="login.html"
-                       class="text-decoration-none fw-semibold">
-                        Login
-                    </a>
-
+                    <a href="login.html" class="text-decoration-none fw-semibold">Login</a>
                 </p>
 
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <script>
 
 async function registerUser() {
 
-    const user = {
+    const name     = document.getElementById("name").value.trim();
+    const email    = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const role     = document.getElementById("role").value;
+    const btn      = document.getElementById("registerBtn");
+    const alertBox = document.getElementById("alertBox");
 
-        name: document.getElementById("name").value,
+    // ---- Basic Validation ----
+    alertBox.style.display = "none";
+    alertBox.className = "alert-box";
 
-        email: document.getElementById("email").value,
+    if (!name || !email || !password) {
+        showAlert("Please fill in all fields.", "error");
+        return;
+    }
 
-        password: document.getElementById("password").value,
+    if (password.length < 6) {
+        showAlert("Password must be at least 6 characters.", "error");
+        return;
+    }
 
-        role: document.getElementById("role").value
-    };
+    // ---- Loading State ----
+    btn.disabled = true;
+    btn.innerText = "Creating Account...";
 
-    const response = await fetch(
+    const user = { name, email, password, role };
 
-        "http://localhost:8080/api/users/register",
+    try {
 
-        {
+        // ✅ FIXED: Relative URL — works on localhost AND Render
+        const response = await fetch("/api/users/register", {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify(user)
+        });
+
+        if (response.ok) {
+
+            showAlert("Registration Successful! Redirecting to login...", "success");
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+
+        } else {
+
+            // Try to read error message from backend
+            let errorMsg = "Registration Failed. Please try again.";
+
+            try {
+                const errData = await response.json();
+                if (errData.message) errorMsg = errData.message;
+            } catch (e) { /* ignore parse error */ }
+
+            showAlert(errorMsg, "error");
         }
-    );
 
-    if(response.ok) {
+    } catch (error) {
 
-        alert("Registration Successful");
+        console.error("Register Error:", error);
+        showAlert("Cannot connect to server. Please try again later.", "error");
 
-        window.location.href = "login.html";
+    } finally {
 
-    } else {
-
-        alert("Registration Failed");
+        btn.disabled = false;
+        btn.innerText = "Create Account";
     }
 }
+
+function showAlert(message, type) {
+    const alertBox = document.getElementById("alertBox");
+    alertBox.innerText = message;
+    alertBox.className = "alert-box " + type;
+    alertBox.style.display = "block";
+}
+
+// Allow Enter key to submit
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") registerUser();
+});
 
 </script>
 
