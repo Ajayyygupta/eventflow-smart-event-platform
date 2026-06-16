@@ -1,303 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>  
-
+<head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Dashboard</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
-            /* Vibrant Dark Theme Gradients */
             --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
-            --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
-            /* Premium Dark Mesh Background */
-            --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%), radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
-            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-            --hover-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.25);
+            --bg-mesh: radial-gradient(at 0% 0%, rgba(17,24,39,1) 0, transparent 50%),
+                       radial-gradient(at 50% 0%, rgba(31,41,55,0.5) 0, transparent 50%), #0B0F19;
+            --card-shadow: 0 10px 30px -5px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
+            --hover-shadow: 0 20px 40px -5px rgba(99,102,241,0.25);
         }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans',sans-serif; }
+        html { scroll-behavior:smooth; }
+        body { background:var(--bg-mesh); color:#E5E7EB; min-height:100vh; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        /* Smooth Scroll Configuration */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg-light-mesh);
-            color: #E5E7EB;
-            min-height: 100vh;
-        }
-
-        /* =========================
-           HEADER (PREMIUM TOPBAR)
-        ========================= */
+        /* TOPBAR */
         .topbar {
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            background: rgba(11, 15, 25, 0.75) !important;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-            position: sticky;
-            top: 0;
-            z-index: 1050;
+            backdrop-filter:blur(16px);
+            -webkit-backdrop-filter:blur(16px);
+            background:rgba(11,15,25,0.75);
+            padding:18px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            border-bottom:1px solid rgba(255,255,255,0.05);
+            position:sticky;
+            top:0;
+            z-index:1050;
         }
-
         .topbar h1 {
-            font-family: 'Syne', sans-serif;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 30px;
-            font-weight: 800;
-            letter-spacing: -0.01em;
+            font-family:'Syne',sans-serif;
+            background:var(--primary-gradient);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            font-size:28px;
+            font-weight:800;
         }
-
         .logout-btn {
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            background: rgba(239, 68, 68, 0.1);
-            color: #EF4444;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border:1px solid rgba(239,68,68,0.3);
+            background:rgba(239,68,68,0.1);
+            color:#EF4444;
+            padding:9px 20px;
+            border-radius:10px;
+            font-weight:600;
+            cursor:pointer;
+            transition:all 0.3s ease;
         }
-
         .logout-btn:hover {
-            background: #EF4444;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+            background:#EF4444;
+            color:#fff;
+            transform:translateY(-2px);
+            box-shadow:0 5px 15px rgba(239,68,68,0.3);
         }
 
-        /* =========================
-           SECTION TITLE
-        ========================= */
+        /* SECTION TITLE */
         .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: #FFFFFF;
-            letter-spacing: -0.01em;
+            font-family:'Syne',sans-serif;
+            font-size:26px;
+            font-weight:800;
+            margin-bottom:24px;
+            color:#fff;
         }
 
-        /* =========================
-           EVENT CARD (GLASSMORPHIC INJECTION)
-        ========================= */
+        /* EVENT CARD */
         .event-card {
-            background: rgba(31, 41, 55, 0.4) !important;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow) !important;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            height: 100%;
+            background:rgba(31,41,55,0.4);
+            backdrop-filter:blur(16px);
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:var(--card-shadow);
+            transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+            height:100%;
+            display:flex;
+            flex-direction:column;
         }
-
         .event-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--hover-shadow) !important;
-            border-color: rgba(99, 102, 241, 0.35) !important;
-            background: rgba(31, 41, 55, 0.55) !important;
+            transform:translateY(-8px);
+            box-shadow:var(--hover-shadow);
+            border-color:rgba(99,102,241,0.35);
         }
 
-        /* Event Image Enhancements */
-        .event-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.5s ease;
+        /* IMAGE */
+        .event-img-box {
+            width:100%;
+            height:210px;
+            overflow:hidden;
+            background:#111827;
+            flex-shrink:0;
         }
-        
-        .event-card:hover .event-image {
-            transform: scale(1.02);
+        .event-img-box img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+            transition:transform 0.5s ease;
         }
+        .event-card:hover .event-img-box img { transform:scale(1.05); }
 
-        .event-content {
-            padding: 25px;
-        }
-
+        /* CONTENT */
+        .event-content { padding:22px; flex:1; display:flex; flex-direction:column; }
         .event-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family:'Syne',sans-serif;
+            font-size:20px;
+            font-weight:700;
+            background:var(--primary-gradient);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            margin-bottom:8px;
         }
+        .event-desc { color:#9CA3AF; font-size:14px; line-height:1.6; flex:1; }
+        .event-meta { margin-top:14px; display:flex; flex-direction:column; gap:5px; font-size:14px; color:#D1D5DB; }
+        .event-meta span i { width:18px; }
 
-        .event-desc {
-            color: #9CA3AF;
-            margin-top: 10px;
-            min-height: 60px;
-            line-height: 1.6;
-        }
-
-        .event-info {
-            margin-top: 15px;
-            color: #D1D5DB;
-            font-size: 15px;
-        }
-
-        .capacity {
-            font-weight: 700;
-            color: #10B981 !important; /* Premium Emerald Accent */
-        }
-
-        /* =========================
-           BUTTONS DYNAMICS
-        ========================= */
+        /* BUTTONS */
         .book-btn {
-            width: 100%;
-            margin-top: 20px;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            background: var(--primary-gradient);
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            width:100%;
+            margin-top:16px;
+            padding:11px;
+            border:none;
+            border-radius:12px;
+            background:var(--primary-gradient);
+            color:#fff;
+            font-weight:600;
+            font-size:14px;
+            cursor:pointer;
+            box-shadow:0 4px 14px rgba(99,102,241,0.3);
+            transition:all 0.3s ease;
         }
+        .book-btn:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(99,102,241,0.5); }
+        .booked-btn  { background:linear-gradient(135deg,#059669,#10B981) !important; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
+        .soldout-btn { background:rgba(75,85,99,0.5) !important; color:#9CA3AF !important; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
 
-        .book-btn:hover:not(.booked-btn):not(.soldout-btn) {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-        }
-
-        /* Already Booked Status Overlay */
-        .booked-btn {
-            background: linear-gradient(135deg, #059669 0%, #10B981 100%) !important;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2) !important;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        /* Sold Out Status Overlay */
-        .soldout-btn {
-            background: rgba(75, 85, 99, 0.6) !important;
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            color: #9CA3AF !important;
-            box-shadow: none !important;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        /* =========================
-           BOOKING CARD PANEL
-        ========================= */
+        /* BOOKING CARDS */
         .booking-card {
-            background: rgba(31, 41, 55, 0.4) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            padding: 22px;
-            border-radius: 16px;
-            margin-bottom: 16px;
-            box-shadow: var(--card-shadow) !important;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background:rgba(31,41,55,0.4);
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:14px;
+            padding:20px;
+            margin-bottom:14px;
+            transition:all 0.3s ease;
         }
-
-        .booking-card:hover {
-            transform: translateX(4px);
-            border-color: rgba(168, 85, 247, 0.3) !important;
-            background: rgba(31, 41, 55, 0.5) !important;
-        }
-
+        .booking-card:hover { transform:translateX(4px); border-color:rgba(168,85,247,0.3); }
         .booking-card h5 {
-            font-family: 'Syne', sans-serif;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
+            font-family:'Syne',sans-serif;
+            background:var(--primary-gradient);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            font-weight:700;
+            margin-bottom:8px;
         }
+        .booking-card p { color:#9CA3AF; margin:2px 0; font-size:14px; }
 
-        .booking-card p {
-            margin: 0;
-            color: #9CA3AF;
-        }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width:7px; }
+        ::-webkit-scrollbar-track { background:#0B0F19; }
+        ::-webkit-scrollbar-thumb { background:linear-gradient(#6366F1,#A855F7); border-radius:20px; }
 
-        /* Custom Premium Cyberpunk Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(#6366F1, #A855F7);
-            border-radius: 20px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(#A855F7, #EC4899);
-        }
-
-        /* =========================
-           RESPONSIVE RE-OPTIMIZATION
-        ========================= */
-        @media(max-width:768px){
-            .topbar {
-                padding: 15px 20px;
-            }
-
-            .topbar h1 {
-                font-size: 22px;
-            }
-
-            .section-title {
-                font-size: 22px;
-                margin-bottom: 15px;
-            }
+        @media(max-width:768px) {
+            .topbar { padding:14px 18px; }
+            .topbar h1 { font-size:20px; }
         }
     </style>
-
 </head>
-
 <body>
-    
 
+<!-- TOPBAR -->
 <div class="topbar">
     <h1>🎉 Event Dashboard</h1>
-    <button class="logout-btn" onclick="logout()">Logout</button>
+    <div id="topbarBtn"></div>
 </div>
 
+<!-- MAIN -->
 <div class="container py-5">
 
     <h2 class="section-title">Available Events</h2>
-    <div id="eventsContainer" class="row g-4">
-        </div>
+    <div id="eventsContainer" class="row g-4"></div>
 
-    <div class="mt-5">
+    <!-- My Bookings: sirf login users ko dikhega -->
+    <div id="bookingsSection" class="mt-5" style="display:none;">
         <h2 class="section-title">My Bookings</h2>
-        <div id="bookingContainer">
-            </div>
+        <div id="bookingContainer"></div>
     </div>
 
 </div>
 
-<script src="/js/dashboard.js"></script>
+<script>
+// ── State ──────────────────────────────────────────────────────────────
+const token      = localStorage.getItem("token");
+const userEmail  = localStorage.getItem("userEmail");
+const isLoggedIn = !!token;
+
+let allEvents      = [];
+let bookedEventIds = [];
+
+// ── Unsplash images (guaranteed load with proper params) ───────────────
+const EVENT_IMAGES = [
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1486591978090-58e619d37fe7?w=800&q=80&auto=format&fit=crop"
+];
+const FALLBACK_IMG = EVENT_IMAGES[0];
+
+// ── Topbar ─────────────────────────────────────────────────────────────
+document.getElementById("topbarBtn").innerHTML = isLoggedIn
+    ? `<button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt me-1"></i> Logout</button>`
+    : "";
+
+// My Bookings section sirf logged-in users ko
+if (isLoggedIn) document.getElementById("bookingsSection").style.display = "block";
+
+// ── Load Events (NO login required) ───────────────────────────────────
+async function loadEvents() {
+    try {
+        const headers = isLoggedIn ? { Authorization: "Bearer " + token } : {};
+        const res     = await fetch("/api/events", { headers });
+        if (!res.ok) throw new Error(res.status);
+
+        allEvents = await res.json();
+        renderEvents(allEvents);
+    } catch (e) {
+        document.getElementById("eventsContainer").innerHTML =
+            `<p class="text-danger"><i class="fas fa-exclamation-circle me-2"></i>Events load nahi hue. Server check karo.</p>`;
+    }
+}
+
+// ── Render Events ──────────────────────────────────────────────────────
+function renderEvents(events) {
+    const el = document.getElementById("eventsContainer");
+    if (!events || events.length === 0) {
+        el.innerHTML = `<p class="text-secondary">Koi events nahi hain abhi.</p>`;
+        return;
+    }
+
+    el.innerHTML = events.map((ev, i) => {
+        const booked  = bookedEventIds.includes(ev.id);
+        const soldOut = (ev.capacity ?? ev.availableSeats ?? 1) <= 0;
+        const img     = EVENT_IMAGES[i % EVENT_IMAGES.length];
+
+        let btn;
+        if (booked)        btn = `<button class="book-btn booked-btn"  disabled>✅ Already Booked</button>`;
+        else if (soldOut)  btn = `<button class="book-btn soldout-btn" disabled>❌ Sold Out</button>`;
+        else               btn = `<button class="book-btn" onclick="bookEvent(${ev.id})">🎟 Book Event</button>`;
+
+        return `
+        <div class="col-md-6 col-lg-4">
+          <div class="event-card">
+            <div class="event-img-box">
+              <img src="${img}" alt="${ev.title ?? 'Event'}"
+                   onerror="this.src='${FALLBACK_IMG}'">
+            </div>
+            <div class="event-content">
+              <div class="event-title">${ev.title ?? "Untitled"}</div>
+              <p class="event-desc">${ev.description ?? ""}</p>
+              <div class="event-meta">
+                <span><i class="fas fa-calendar" style="color:#6366F1"></i> ${ev.date ?? ev.eventDate ?? "TBD"}</span>
+                <span><i class="fas fa-map-marker-alt" style="color:#A855F7"></i> ${ev.location ?? ev.venue ?? "TBD"}</span>
+                <span><i class="fas fa-users" style="color:#10B981"></i> Seats: <b style="color:#10B981">${ev.capacity ?? ev.availableSeats ?? 0}</b></span>
+              </div>
+              ${btn}
+            </div>
+          </div>
+        </div>`;
+    }).join("");
+}
+
+// ── Search ─────────────────────────────────────────────────────────────
+function searchEvent(query) {
+    const q = query.toLowerCase();
+    renderEvents(allEvents.filter(e =>
+        (e.title    ?? "").toLowerCase().includes(q) ||
+        (e.location ?? "").toLowerCase().includes(q)
+    ));
+}
+
+// ── Book Event ─────────────────────────────────────────────────────────
+async function bookEvent(eventId) {
+    if (!isLoggedIn) {
+        alert("📌 Booking ke liye pehle login karo!");
+        window.location.href = "login.html?redirect=dashboard.html";
+        return;
+    }
+    try {
+        const res = await fetch(`/api/bookings/${eventId}?userEmail=${userEmail}`, {
+            method: "POST",
+            headers: { Authorization: "Bearer " + token }
+        });
+
+        if (res.status === 401 || res.status === 403) {
+            localStorage.clear();
+            alert("Session expire ho gaya. Dobara login karo.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        const text = await res.text();
+        if (res.ok) { alert("Event Booked 🔥"); init(); }
+        else         alert(text);
+    } catch (e) {
+        alert("Network error. Check karo.");
+    }
+}
+
+// ── Load Bookings (only logged-in) ─────────────────────────────────────
+async function loadBookings() {
+    if (!isLoggedIn) return;
+    try {
+        const res      = await fetch(`/api/bookings?userEmail=${userEmail}`, {
+            headers: { Authorization: "Bearer " + token }
+        });
+        const bookings = await res.json();
+
+        bookedEventIds = bookings.map(b => b.eventId);
+
+        const tableBody = document.getElementById("bookingTableBody");
+        const countEl   = document.getElementById("myBookings");
+        if (countEl) countEl.innerText = bookings.length;
+
+        if (tableBody) {
+            tableBody.innerHTML = bookings.map(b => `
+            <tr>
+                <td>${b.id}</td>
+                <td>${b.eventTitle}</td>
+                <td>${b.bookingTime}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="cancelBooking(${b.id})">Cancel</button></td>
+            </tr>`).join("");
+        }
+
+        // Card style bookings (My Bookings section)
+        const cardBox = document.getElementById("bookingContainer");
+        if (cardBox) {
+            if (bookings.length === 0) {
+                cardBox.innerHTML = `<p class="text-secondary">Abhi koi booking nahi hai.</p>`;
+            } else {
+                cardBox.innerHTML = bookings.map(b => `
+                <div class="booking-card">
+                    <h5>${b.eventTitle ?? "Event"}</h5>
+                    <p><i class="fas fa-hashtag me-2" style="color:#6366F1"></i>Booking ID: ${b.id}</p>
+                    <p><i class="fas fa-clock me-2"   style="color:#A855F7"></i>${b.bookingTime ?? "—"}</p>
+                </div>`).join("");
+            }
+        }
+    } catch (e) {
+        console.error("loadBookings:", e);
+    }
+}
+
+// ── Cancel Booking ─────────────────────────────────────────────────────
+async function cancelBooking(id) {
+    try {
+        const res = await fetch(`/api/bookings/${id}`, {
+            method: "DELETE",
+            headers: { Authorization: "Bearer " + token }
+        });
+        if (res.ok) { alert("Booking Cancelled"); init(); }
+    } catch (e) { console.error(e); }
+}
+
+// ── Logout ─────────────────────────────────────────────────────────────
+function logout() {
+    localStorage.clear();
+    window.location.href = "dashboard.html";
+}
+
+// ── Init ───────────────────────────────────────────────────────────────
+async function init() {
+    await loadBookings();
+    await loadEvents();
+}
+
+init();
+</script>
 </body>
 </html>

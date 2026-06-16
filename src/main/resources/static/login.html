@@ -2,37 +2,23 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventFlow - Login</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Vibrant Dark Theme Gradients */
             --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
-            --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
-            /* Premium Dark Mesh Background */
-            --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%), radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
-            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-            --hover-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.25);
+            --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%),
+                             radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
+            --card-shadow: 0 10px 30px -5px rgba(0,0,0,0.5), 0 1px 3px 0 rgba(0,0,0,0.3);
+            --hover-shadow: 0 20px 40px -5px rgba(99,102,241,0.25);
         }
 
-        /* Smooth Scroll and Global Core styling */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             background: var(--bg-light-mesh);
@@ -41,12 +27,11 @@
             min-height: 100vh;
         }
 
-        /* Premium Dark Navbar Overhaul */
         .navbar {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             background: rgba(11, 15, 25, 0.75) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.05) !important;
         }
 
         .brand {
@@ -62,7 +47,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Outline Register Button Customization */
         .btn-outline-primary {
             border: 2px solid #374151 !important;
             color: #E5E7EB !important;
@@ -77,12 +61,11 @@
             transform: translateY(-3px);
         }
 
-        /* Glassmorphic Login Panel Dashboard */
         .login-card {
             background: rgba(31, 41, 55, 0.4) !important;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255,255,255,0.05) !important;
             border-radius: 24px;
             padding: 40px;
             box-shadow: var(--card-shadow) !important;
@@ -90,7 +73,7 @@
         }
 
         .login-card:hover {
-            border-color: rgba(99, 102, 241, 0.3) !important;
+            border-color: rgba(99,102,241,0.3) !important;
             box-shadow: var(--hover-shadow) !important;
         }
 
@@ -101,31 +84,25 @@
             color: #FFFFFF;
         }
 
-        .text-secondary {
-            color: #9CA3AF !important;
-        }
+        .text-secondary { color: #9CA3AF !important; }
 
-        /* Inputs Core Overhaul */
         .form-control {
             height: 55px;
             border-radius: 14px;
             background-color: rgba(17, 24, 39, 0.6) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
             color: #FFFFFF !important;
             padding: 0.75rem 1.25rem;
             transition: all 0.3s ease;
         }
 
         .form-control:focus {
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.25) !important;
             border-color: #6366F1 !important;
         }
 
-        .form-control::placeholder {
-            color: #6B7280;
-        }
+        .form-control::placeholder { color: #6B7280; }
 
-        /* Primary Submit Action Trigger Button */
         .btn-login {
             background: var(--primary-gradient) !important;
             border: none !important;
@@ -134,18 +111,22 @@
             font-size: 18px;
             font-weight: 600;
             color: #FFFFFF !important;
-            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 14px 0 rgba(99,102,241,0.4);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         .btn-login:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px 0 rgba(99, 102, 241, 0.6);
+            box-shadow: 0 8px 25px 0 rgba(99,102,241,0.6);
         }
 
-        /* =========================
-           ADVANCED ROLE SELECTION CARDS
-        ========================= */
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Role Cards */
         .role-options {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -153,9 +134,7 @@
             margin-bottom: 20px;
         }
 
-        .role-option {
-            position: relative;
-        }
+        .role-option { position: relative; }
 
         .role-option input {
             position: absolute;
@@ -165,22 +144,20 @@
 
         .role-card {
             background: rgba(17, 24, 39, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 14px;
             padding: 14px 8px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            height: 100%;
         }
 
         .role-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(99,102,241,0.4);
+            background: rgba(255,255,255,0.03);
             transform: translateY(-2px);
         }
 
-        /* CSS Trigger on Checked element state mapping layout perfectly */
         .role-option input:checked + .role-card {
             border-color: #a855f7 !important;
             background: rgba(168, 85, 247, 0.12) !important;
@@ -197,10 +174,8 @@
             margin-bottom: 6px;
             transition: transform 0.3s ease;
         }
-        
-        .role-card:hover .role-icon {
-            transform: scale(1.15);
-        }
+
+        .role-card:hover .role-icon { transform: scale(1.15); }
 
         .role-label {
             font-size: 13px;
@@ -209,23 +184,36 @@
             transition: color 0.3s ease;
         }
 
-        /* Footer Redirection Anchor Properties */
         .login-card a {
             color: #A855F7 !important;
             transition: color 0.3s ease;
         }
 
-        .login-card a:hover {
-            color: #EC4899 !important;
+        .login-card a:hover { color: #EC4899 !important; }
+
+        /* Alert Box */
+        .alert-box {
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-weight: 500;
+            display: none;
+            margin-bottom: 16px;
         }
 
-        /* Custom Scrollbar configuration */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .alert-box.error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #FCA5A5;
         }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
+
+        .alert-box.success {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #86EFAC;
         }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(#6366F1, #A855F7);
             border-radius: 20px;
@@ -234,69 +222,39 @@
             background: linear-gradient(#A855F7, #EC4899);
         }
     </style>
-
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-
-<nav class="navbar navbar-expand-lg bg-white border-bottom py-3">
-
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg border-bottom py-3">
     <div class="container">
-
-        <a class="navbar-brand brand" href="#">
-            Event<span>Flow</span>
-        </a>
-
-        <a href="register.html"
-           class="btn btn-outline-primary rounded-pill px-4">
-            Register
-        </a>
-
+        <a class="navbar-brand brand" href="#">Event<span>Flow</span></a>
+        <a href="register.html" class="btn btn-outline-primary rounded-pill px-4">Register</a>
     </div>
-
 </nav>
 
-<!-- ================= LOGIN SECTION ================= -->
-
+<!-- LOGIN SECTION -->
 <div class="container py-5">
-
-    <div class="row justify-content-center align-items-center"
-         style="min-height:80vh;">
-
+    <div class="row justify-content-center align-items-center" style="min-height:80vh;">
         <div class="col-lg-5">
-
             <div class="card login-card">
 
                 <div class="text-center mb-4">
-
-                    <h1 class="main-title">
-                        Welcome Back 
-                    </h1>
-
-                    <p class="text-secondary">
-                        Login to your EventFlow account
-                    </p>
-
+                    <h1 class="main-title">Welcome Back</h1>
+                    <p class="text-secondary">Login to your EventFlow account</p>
                 </div>
 
-                <!-- Login As -->
+                <!-- ✅ Alert Box -->
+                <div id="loginAlertBox" class="alert-box"></div>
 
+                <!-- Role Selection -->
                 <div class="mb-4">
-
-                    <label class="form-label fw-semibold">
-                        Login As
-                    </label>
-
+                    <label class="form-label fw-semibold">Login As</label>
                     <div class="role-options">
 
                         <label class="role-option">
-                            <input type="radio"
-                                   name="loginRole"
-                                   id="roleUser"
-                                   value="USER"
-                                   checked>
+                            <input type="radio" name="loginRole" id="roleUser" value="USER" checked>
                             <div class="role-card">
                                 <span class="role-icon">👤</span>
                                 <span class="role-label">User</span>
@@ -304,10 +262,7 @@
                         </label>
 
                         <label class="role-option">
-                            <input type="radio"
-                                   name="loginRole"
-                                   id="roleOrganizer"
-                                   value="ORGANIZER">
+                            <input type="radio" name="loginRole" id="roleOrganizer" value="ORGANIZER">
                             <div class="role-card">
                                 <span class="role-icon">🎯</span>
                                 <span class="role-label">Organizer</span>
@@ -315,10 +270,7 @@
                         </label>
 
                         <label class="role-option">
-                            <input type="radio"
-                                   name="loginRole"
-                                   id="roleAdmin"
-                                   value="ADMIN">
+                            <input type="radio" name="loginRole" id="roleAdmin" value="ADMIN">
                             <div class="role-card">
                                 <span class="role-icon">🛡️</span>
                                 <span class="role-label">Admin</span>
@@ -326,68 +278,138 @@
                         </label>
 
                     </div>
-
                 </div>
 
                 <!-- Email -->
-
                 <div class="mb-3">
-
-                    <label class="form-label fw-semibold">
-                        Email Address
-                    </label>
-
-                    <input type="email"
-                           id="email"
-                           class="form-control"
-                           placeholder="Enter your email">
-
+                    <label class="form-label fw-semibold">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
                 </div>
 
                 <!-- Password -->
-
                 <div class="mb-4">
-
-                    <label class="form-label fw-semibold">
-                        Password
-                    </label>
-
-                    <input type="password"
-                           id="password"
-                           class="form-control"
-                           placeholder="Enter your password">
-
+                    <label class="form-label fw-semibold">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
                 </div>
 
-                <!-- Button -->
-
-                <button class="btn btn-primary w-100 btn-login"
-                        onclick="login()">
-
+                <!-- ✅ Button with id for loading state -->
+                <button id="loginBtn" class="btn btn-primary w-100 btn-login" onclick="login()">
                     Sign In
-
                 </button>
 
                 <p class="text-center text-secondary mt-4 mb-0">
-
                     Don't have an account?
-
-                    <a href="register.html"
-                       class="text-decoration-none fw-semibold">
-                        Register
-                    </a>
-
+                    <a href="register.html" class="text-decoration-none fw-semibold">Register</a>
                 </p>
 
             </div>
-
         </div>
-
     </div>
-
 </div>
 
-<script src="/js/login.js"></script>
+<!-- ✅ Script inline - no external file dependency -->
+<script>
+function getSelectedRole() {
+    const selected = document.querySelector('input[name="loginRole"]:checked');
+    return selected ? selected.value : "USER";
+}
+
+function redirectByRole(role) {
+    if (role === "ADMIN") {
+        window.location.href = "admin.html";
+    } else if (role === "ORGANIZER") {
+        window.location.href = "organizer.html";
+    } else {
+        window.location.href = "userdashboard.html";
+    }
+}
+
+async function login() {
+    const email        = document.getElementById("email").value.trim();
+    const password     = document.getElementById("password").value.trim();
+    const selectedRole = getSelectedRole();
+
+    if (!email || !password) {
+        showLoginAlert("Please enter email and password.", "error");
+        return;
+    }
+
+    const btn = document.getElementById("loginBtn");
+    btn.disabled = true;
+    btn.innerText = "Signing in...";
+
+    try {
+        const response = await fetch("/api/users/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        let data;
+        const contentType = response.headers.get("content-type") || "";
+
+        if (contentType.includes("application/json")) {
+            data = await response.json();
+        } else {
+            const text = await response.text();
+            if (!response.ok) {
+                showLoginAlert(text || "Invalid credentials", "error");
+                return;
+            }
+            data = { token: text, role: selectedRole, email };
+        }
+
+        if (!response.ok) {
+            showLoginAlert(data.message || "Invalid credentials", "error");
+            return;
+        }
+
+        if (!data.token) {
+            showLoginAlert("Login failed: no token received.", "error");
+            return;
+        }
+
+        const accountRole = (data.role || selectedRole).toUpperCase();
+
+        if (accountRole !== selectedRole) {
+            const roleNames = { ADMIN: "Admin", ORGANIZER: "Organizer", USER: "User" };
+            showLoginAlert(
+                `This account is "${roleNames[accountRole] || accountRole}". ` +
+                `Please select that role and try again.`,
+                "error"
+            );
+            return;
+        }
+
+        // ✅ Save to localStorage
+        localStorage.setItem("token",     data.token);
+        localStorage.setItem("userEmail", data.email || email);
+        localStorage.setItem("role",      accountRole);
+
+        showLoginAlert("Login successful! Redirecting...", "success");
+
+        setTimeout(() => redirectByRole(accountRole), 1000);
+
+    } catch (error) {
+        console.error(error);
+        showLoginAlert("Cannot connect to server. Please try again.", "error");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "Sign In";
+    }
+}
+
+function showLoginAlert(message, type) {
+    const box = document.getElementById("loginAlertBox");
+    box.innerText = message;
+    box.className = "alert-box " + type;
+    box.style.display = "block";
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") login();
+});
+</script>
 
 </body>
 </html>

@@ -13,56 +13,43 @@
 
   <style>
     :root {
-      /* Vibrant Dark Theme Gradients */
       --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
       --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
-      /* Premium Dark Mesh Background */
       --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%), radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
       --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
       --hover-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.25);
     }
 
-    /* Global Smooth Scrolling and Core Changes */
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg-light-mesh);
       overflow-x: hidden;
-      color: #E5E7EB; /* Light grey text for readability */
+      color: #E5E7EB;
     }
 
     h1, h2, h3, h4, h5, .navbar-brand {
       font-family: 'Syne', sans-serif;
       letter-spacing: -0.02em;
-      color: #FFFFFF; /* Pure white headers */
+      color: #FFFFFF;
     }
 
-    /* Text Overrides to support Dark Theme */
-    .text-dark {
-      color: #FFFFFF !important;
-    }
-    .text-secondary {
-      color: #9CA3AF !important; /* Muted text for dark mode */
-    }
+    .text-dark     { color: #FFFFFF !important; }
+    .text-secondary{ color: #9CA3AF !important; }
 
-    /* Text Primary Gradient */
     .text-primary {
       background: var(--primary-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Custom Button Upgrades */
     .btn-primary {
       background: var(--primary-gradient) !important;
       border: none !important;
       box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    
     .btn-primary:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 25px 0 rgba(99, 102, 241, 0.6);
@@ -73,7 +60,6 @@
       color: #E5E7EB !important;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-
     .btn-outline-dark:hover {
       background-color: #ffffff !important;
       color: #0B0F19 !important;
@@ -81,7 +67,6 @@
       transform: translateY(-4px);
     }
 
-    /* Premium Dark Navbar */
     .navbar {
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -91,37 +76,24 @@
       top: 0;
       z-index: 1050;
     }
-    
-    .navbar-brand {
-      color: #FFFFFF !important;
-    }
+    .navbar-brand { color: #FFFFFF !important; }
 
     .nav-link {
       position: relative;
       color: #9CA3AF !important;
       transition: color 0.3s ease;
     }
-
-    .nav-link.active, .nav-link:hover {
-      color: #FFFFFF !important;
-    }
-    
+    .nav-link.active, .nav-link:hover { color: #FFFFFF !important; }
     .nav-link::after {
       content: '';
       position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
+      width: 0; height: 2px;
+      bottom: -2px; left: 0;
       background: var(--primary-gradient);
       transition: width 0.3s ease;
     }
-    
-    .nav-link:hover::after, .nav-link.active::after {
-      width: 100%;
-    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-    /* Badge Upgrade */
     .bg-primary-subtle {
       background: rgba(99, 102, 241, 0.15) !important;
       border: 1px solid rgba(99, 102, 241, 0.3);
@@ -131,18 +103,12 @@
       font-weight: 700 !important;
     }
 
-    /* Hero Image Animation */
-    .hero-img-container {
-      position: relative;
-    }
-    
+    .hero-img-container { position: relative; }
     .hero-img-container::before {
       content: '';
       position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 20px;
-      left: 20px;
+      width: 100%; height: 100%;
+      top: 20px; left: 20px;
       background: var(--accent-gradient);
       border-radius: 1.5rem;
       z-index: -1;
@@ -154,12 +120,8 @@
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
-    .img-fluid.rounded-4:hover {
-      transform: scale(1.03) rotate(0.5deg);
-    }
+    .img-fluid.rounded-4:hover { transform: scale(1.03) rotate(0.5deg); }
 
-    /* Glassmorphism Sections & Stats Cards */
     .bg-light {
       background: rgba(17, 24, 39, 0.4) !important;
       backdrop-filter: blur(20px);
@@ -175,7 +137,6 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
     .stats-box:hover {
       background: rgba(255, 255, 255, 0.07);
       transform: translateY(-5px);
@@ -183,7 +144,6 @@
       border-color: rgba(99, 102, 241, 0.3);
     }
 
-    /* Feature & Step Cards Upgrade */
     .card.border-0.shadow-sm {
       background: rgba(31, 41, 55, 0.4) !important;
       backdrop-filter: blur(10px);
@@ -191,12 +151,10 @@
       box-shadow: var(--card-shadow) !important;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     .card.border-0.shadow-sm .bg-light {
       background: rgba(255, 255, 255, 0.05) !important;
       border: none !important;
     }
-
     .card.border-0.shadow-sm:hover {
       transform: translateY(-12px);
       box-shadow: var(--hover-shadow) !important;
@@ -204,29 +162,20 @@
       background: rgba(31, 41, 55, 0.7) !important;
     }
 
-    /* Emoji / Icons Floating Animation */
     .fs-1 {
       display: inline-block;
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
-    .card:hover .fs-1 {
-      transform: scale(1.25) rotate(-8deg);
-    }
+    .card:hover .fs-1 { transform: scale(1.25) rotate(-8deg); }
 
-    /* How it works Steps */
     .display-5.text-primary {
       font-size: 3.5rem;
       font-weight: 800;
       opacity: 0.15;
       transition: opacity 0.4s ease;
     }
-    
-    .card:hover .display-5.text-primary {
-      opacity: 0.8;
-    }
+    .card:hover .display-5.text-primary { opacity: 0.8; }
 
-    /* CTA Section Upgrade */
     .bg-primary.text-white {
       background: var(--primary-gradient) !important;
       position: relative;
@@ -234,25 +183,18 @@
       box-shadow: 0 20px 50px rgba(99, 102, 241, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .bg-primary.text-white::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 400px;
-      height: 400px;
+      top: -50%; right: -20%;
+      width: 400px; height: 400px;
       background: var(--accent-gradient);
       border-radius: 50%;
       z-index: 0;
       opacity: 0.5;
       filter: blur(80px);
     }
-
-    .bg-primary.text-white * {
-      position: relative;
-      z-index: 1;
-    }
+    .bg-primary.text-white * { position: relative; z-index: 1; }
 
     .btn-light {
       background: #FFFFFF !important;
@@ -262,396 +204,237 @@
       box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-
     .btn-light:hover {
       transform: translateY(-4px) scale(1.03);
       box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
     }
 
-    /* Premium Dark Footer */
     footer.bg-white {
       background: #070A12 !important;
       border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
-    footer .text-dark {
-      color: #FFFFFF !important;
-    }
-    .text-brown {
-      color: #FFA500 !important; /* Cozy glow for coffee icon */
-    }
+    footer .text-dark { color: #FFFFFF !important; }
 
-    /* Custom Premium Cyberpunk Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0B0F19;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(#6366F1, #A855F7);
-      border-radius: 20px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(#A855F7, #EC4899);
-    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0B0F19; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(#6366F1, #A855F7); border-radius: 20px; }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(#A855F7, #EC4899); }
   </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom py-3">
   <div class="container">
-
-    <!-- Logo -->
     <a class="navbar-brand fw-bold fs-3" href="#">
       Event<span class="text-primary">Flow</span>
     </a>
-
-    <!-- Mobile Toggle -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Nav Links -->
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-
         <li class="nav-item">
           <a class="nav-link active fw-semibold" href="#">Home</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link fw-semibold" href="dashboard.html">Events</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link fw-semibold" href="login.html">Login</a>
         </li>
-
         <li class="nav-item">
-          <a class="btn btn-primary px-4 rounded-pill" href="register.html">
-            Get Started
-          </a>
+          <a class="btn btn-primary px-4 rounded-pill" href="register.html">Get Started</a>
         </li>
-
       </ul>
     </div>
-
   </div>
 </nav>
 
-<!-- ================= HERO SECTION ================= -->
+<!-- HERO -->
 <section class="py-5">
   <div class="container py-lg-5">
-
     <div class="row align-items-center g-5">
 
-      <!-- Left Content -->
       <div class="col-lg-6">
-
         <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-4">
           🎉 Smart Event Management Platform
         </span>
-
         <h1 class="display-3 fw-bold mb-4">
           Manage Events <br>
           <span class="text-primary">Effortlessly</span>
         </h1>
-
         <p class="text-secondary fs-5 mb-4">
           EventFlow connects organizers, attendees, and admins on one powerful platform.
           Create, manage, and book events with ease.
         </p>
-
         <div class="d-flex flex-wrap gap-3">
-          <a href="#" class="btn btn-primary btn-lg px-4 rounded-pill">
+
+          <!-- ✅ Start for Free → dashboard.html -->
+          <a href="dashboard.html" class="btn btn-primary btn-lg px-4 rounded-pill">
             Start for Free
           </a>
 
-          <a href="#" class="btn btn-outline-dark btn-lg px-4 rounded-pill">
+          <!-- ✅ Browse Events → login.html -->
+          <a href="login.html" class="btn btn-outline-dark btn-lg px-4 rounded-pill">
             Browse Events
           </a>
-        </div>
 
+        </div>
       </div>
 
-      <!-- Right Image -->
       <div class="col-lg-6 text-center">
-
         <img
           src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop"
           class="img-fluid rounded-4 shadow"
           alt="Event Image"
         >
-
       </div>
 
     </div>
-
   </div>
 </section>
 
-<!-- ================= STATS SECTION ================= -->
+<!-- STATS -->
 <section class="py-5 bg-light">
   <div class="container">
-
     <div class="row text-center g-4">
-
       <div class="col-6 col-lg-3">
         <h2 class="fw-bold text-primary">2,400+</h2>
         <p class="text-secondary mb-0">Events Hosted</p>
       </div>
-
       <div class="col-6 col-lg-3">
         <h2 class="fw-bold text-primary">85K+</h2>
         <p class="text-secondary mb-0">Registrations</p>
       </div>
-
       <div class="col-6 col-lg-3">
         <h2 class="fw-bold text-primary">1,200+</h2>
         <p class="text-secondary mb-0">Organizers</p>
       </div>
-
       <div class="col-6 col-lg-3">
         <h2 class="fw-bold text-primary">98%</h2>
         <p class="text-secondary mb-0">Satisfaction Rate</p>
       </div>
-
     </div>
-
   </div>
 </section>
 
-<!-- ================= FEATURES SECTION ================= -->
+<!-- FEATURES -->
 <section class="py-5">
   <div class="container">
-
-    <!-- Heading -->
     <div class="text-center mb-5">
-
-      <h2 class="fw-bold display-5">
-        Everything You Need
-      </h2>
-
-      <p class="text-secondary fs-5">
-        One platform. Three powerful roles. Infinite possibilities.
-      </p>
-
+      <h2 class="fw-bold display-5">Everything You Need</h2>
+      <p class="text-secondary fs-5">One platform. Three powerful roles. Infinite possibilities.</p>
     </div>
-
-    <!-- Cards -->
     <div class="row g-4">
-
-      <!-- Card -->
       <div class="col-md-6 col-lg-4">
         <div class="card border-0 shadow-sm rounded-4 h-100">
           <div class="card-body p-4">
-
             <div class="fs-1 mb-3">🙋</div>
-
-            <h4 class="fw-bold">
-              For Attendees
-            </h4>
-
-            <p class="text-secondary">
-              Browse events, book tickets instantly, track your registrations,
-              and never miss an event you love.
-            </p>
-
+            <h4 class="fw-bold">For Attendees</h4>
+            <p class="text-secondary">Browse events, book tickets instantly, track your registrations, and never miss an event you love.</p>
           </div>
         </div>
       </div>
-
-      <!-- Card -->
       <div class="col-md-6 col-lg-4">
         <div class="card border-0 shadow-sm rounded-4 h-100">
           <div class="card-body p-4">
-
             <div class="fs-1 mb-3">🎪</div>
-
-            <h4 class="fw-bold">
-              For Organizers
-            </h4>
-
-            <p class="text-secondary">
-              Create and publish events, manage registrations,
-              view analytics, and grow your audience.
-            </p>
-
+            <h4 class="fw-bold">For Organizers</h4>
+            <p class="text-secondary">Create and publish events, manage registrations, view analytics, and grow your audience.</p>
           </div>
         </div>
       </div>
-
-      <!-- Card -->
       <div class="col-md-6 col-lg-4">
         <div class="card border-0 shadow-sm rounded-4 h-100">
           <div class="card-body p-4">
-
             <div class="fs-1 mb-3">🛡️</div>
-
-            <h4 class="fw-bold">
-              For Admins
-            </h4>
-
-            <p class="text-secondary">
-              Full control over the platform. Manage users,
-              moderate events, and ensure smooth operations.
-            </p>
-
+            <h4 class="fw-bold">For Admins</h4>
+            <p class="text-secondary">Full control over the platform. Manage users, moderate events, and ensure smooth operations.</p>
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </section>
 
-<!-- ================= HOW IT WORKS ================= -->
+<!-- HOW IT WORKS -->
 <section class="py-5 bg-light">
   <div class="container">
-
-    <!-- Heading -->
     <div class="text-center mb-5">
-
-      <h2 class="fw-bold display-5">
-        How It Works
-      </h2>
-
-      <p class="text-secondary fs-5">
-        Get started in minutes
-      </p>
-
+      <h2 class="fw-bold display-5">How It Works</h2>
+      <p class="text-secondary fs-5">Get started in minutes</p>
     </div>
-
     <div class="row g-4">
-
-      <!-- Step -->
       <div class="col-md-6 col-lg-3">
         <div class="card border-0 shadow-sm rounded-4 h-100 text-center">
           <div class="card-body p-4">
-
             <div class="display-5 fw-bold text-primary mb-3">1</div>
-
-            <h5 class="fw-bold">
-              Create Account
-            </h5>
-
-            <p class="text-secondary">
-              Register as User, Organizer, or Admin.
-            </p>
-
+            <h5 class="fw-bold">Create Account</h5>
+            <p class="text-secondary">Register as User, Organizer, or Admin.</p>
           </div>
         </div>
       </div>
-
-      <!-- Step -->
       <div class="col-md-6 col-lg-3">
         <div class="card border-0 shadow-sm rounded-4 h-100 text-center">
           <div class="card-body p-4">
-
             <div class="display-5 fw-bold text-primary mb-3">2</div>
-
-            <h5 class="fw-bold">
-              Discover Events
-            </h5>
-
-            <p class="text-secondary">
-              Browse events by category, date, or location.
-            </p>
-
+            <h5 class="fw-bold">Discover Events</h5>
+            <p class="text-secondary">Browse events by category, date, or location.</p>
           </div>
         </div>
       </div>
-
-      <!-- Step -->
       <div class="col-md-6 col-lg-3">
         <div class="card border-0 shadow-sm rounded-4 h-100 text-center">
           <div class="card-body p-4">
-
             <div class="display-5 fw-bold text-primary mb-3">3</div>
-
-            <h5 class="fw-bold">
-              Book Tickets
-            </h5>
-
-            <p class="text-secondary">
-              Confirm bookings instantly and get digital tickets.
-            </p>
-
+            <h5 class="fw-bold">Book Tickets</h5>
+            <p class="text-secondary">Confirm bookings instantly and get digital tickets.</p>
           </div>
         </div>
       </div>
-
-      <!-- Step -->
       <div class="col-md-6 col-lg-3">
         <div class="card border-0 shadow-sm rounded-4 h-100 text-center">
           <div class="card-body p-4">
-
             <div class="display-5 fw-bold text-primary mb-3">4</div>
-
-            <h5 class="fw-bold">
-              Attend & Enjoy
-            </h5>
-
-            <p class="text-secondary">
-              Check-in using QR tickets and enjoy the experience.
-            </p>
-
+            <h5 class="fw-bold">Attend & Enjoy</h5>
+            <p class="text-secondary">Check-in using QR tickets and enjoy the experience.</p>
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </section>
 
-<!-- ================= CTA SECTION ================= -->
+<!-- CTA -->
 <section class="py-5">
   <div class="container">
-
     <div class="bg-primary text-white rounded-4 p-5 text-center">
+      <h2 class="fw-bold display-5 mb-3">Ready to Host Your Next Event?</h2>
+      <p class="fs-5 mb-4">Sign up as an organizer and create your first event in under 5 minutes.</p>
 
-      <h2 class="fw-bold display-5 mb-3">
-        Ready to Host Your Next Event?
-      </h2>
-
-      <p class="fs-5 mb-4">
-        Sign up as an organizer and create your first event in under 5 minutes.
-      </p>
-
-      <a href="#" class="btn btn-light btn-lg rounded-pill px-4">
+      <!-- ✅ Start as Organizer → register.html -->
+      <a href="register.html" class="btn btn-light btn-lg rounded-pill px-4">
         Start as Organizer
       </a>
 
     </div>
-
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 <footer class="py-4 border-top">
   <div class="container">
-
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3">
-
       <div class="text-secondary">
         <strong class="text-dark">EventFlow</strong> — Smart Event Management Platform
       </div>
-
-      <div class="text-secondary">
-        Built with ☕ Spring Boot + Java
-      </div>
-
+      <div class="text-secondary">Built with ☕ Spring Boot + Java</div>
     </div>
-
   </div>
 </footer>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

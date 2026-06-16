@@ -57,7 +57,12 @@ public class SecurityConfig {
                      "/api/organizer/events",
                      "/api/organizer/bookings",
                      "/api/organizer/stats",
-                     "/api/organizer/email"
+                     "/api/organizer/email",
+
+
+                      "/api/events",        // ✅ ADD: guest events list देख सके
+                      "/api/events/**"      // ✅ ADD: individual event detail देख सके
+
 
                 ).permitAll()
 

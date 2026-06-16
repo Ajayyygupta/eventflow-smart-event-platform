@@ -4,28 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/admin.css">
 
     <style>
         :root {
-            /* Vibrant Dark Theme Gradients */
             --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
             --accent-gradient: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
-            /* Premium Dark Mesh Background */
-            --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%), radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
-            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-            --hover-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.25);
+            --bg-light-mesh: radial-gradient(at 0% 0%, rgba(17, 24, 39, 1) 0, transparent 50%),
+                             radial-gradient(at 50% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), #0B0F19;
+            --card-shadow: 0 10px 30px -5px rgba(0,0,0,0.5), 0 1px 3px 0 rgba(0,0,0,0.3);
+            --hover-shadow: 0 20px 40px -5px rgba(99,102,241,0.25);
             --sidebar-width: 260px;
         }
 
-        /* Smooth Scroll and Reset */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -41,42 +36,37 @@
             color: #FFFFFF;
         }
 
-        /* Typography Helper Overrides */
         p { color: #9CA3AF !important; }
+
         .text-primary {
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Layout Structure Styling */
         .main {
             margin-left: var(--sidebar-width);
             padding: 2.5rem;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Topbar styling */
         .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2.5rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Premium Glassmorphic Sidebar */
         .sidebar {
             width: var(--sidebar-width);
             position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            top: 0; left: 0; bottom: 0;
             background: rgba(11, 15, 25, 0.85) !important;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255,255,255,0.05);
             padding: 2rem 1.5rem;
             display: flex;
             flex-direction: column;
@@ -94,12 +84,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Sidebar Navigation Menu */
-        .menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .menu { list-style: none; padding: 0; margin: 0; }
 
         .menu li {
             padding: 0.85rem 1.25rem;
@@ -115,62 +100,61 @@
 
         .menu li:hover {
             color: #FFFFFF;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
             transform: translateX(4px);
         }
 
         .menu li.active {
             background: var(--primary-gradient) !important;
             color: #FFFFFF !important;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 15px rgba(99,102,241,0.3);
         }
 
-        /* Action Buttons */
         .btn-primary {
             background: var(--primary-gradient) !important;
             border: none !important;
             font-weight: 600;
             padding: 0.6rem 1.5rem;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 14px 0 rgba(99,102,241,0.4);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
+
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.6);
+            box-shadow: 0 6px 20px 0 rgba(99,102,241,0.6);
         }
 
         .logout-btn {
-            background: rgba(239, 68, 68, 0.1);
+            background: rgba(239,68,68,0.1);
             color: #EF4444;
-            border: 1px solid rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239,68,68,0.2);
             padding: 0.75rem;
             border-radius: 0.75rem;
             font-weight: 600;
             transition: all 0.3s ease;
+            width: 100%;
         }
+
         .logout-btn:hover {
             background: #EF4444;
             color: #FFFFFF;
             transform: translateY(-2px);
         }
 
-        /* Mobile Trigger Button */
         .mobile-menu-btn {
             display: none;
             position: fixed;
-            top: 1rem;
-            left: 1rem;
+            top: 1rem; left: 1rem;
             z-index: 1060;
-            background: rgba(31, 41, 55, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(31,41,55,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
             color: white;
             padding: 0.5rem 0.85rem;
             border-radius: 0.5rem;
             backdrop-filter: blur(10px);
         }
 
-        /* Stats Grid Setup */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -178,12 +162,11 @@
             margin-bottom: 2rem;
         }
 
-        /* Premium Dashboard Cards */
         .card {
-            background: rgba(31, 41, 55, 0.4) !important;
+            background: rgba(31,41,55,0.4) !important;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255,255,255,0.05) !important;
             border-radius: 1.25rem !important;
             padding: 1.75rem;
             box-shadow: var(--card-shadow) !important;
@@ -193,8 +176,8 @@
         .card:hover {
             transform: translateY(-6px);
             box-shadow: var(--hover-shadow) !important;
-            border-color: rgba(99, 102, 241, 0.3) !important;
-            background: rgba(31, 41, 55, 0.5) !important;
+            border-color: rgba(99,102,241,0.3) !important;
+            background: rgba(31,41,55,0.5) !important;
         }
 
         .stat-card h3 {
@@ -206,18 +189,15 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Premium Tables Dark Theme */
-        .table {
-            color: #E5E7EB !important;
-            margin-bottom: 0;
-            vertical-align: middle;
-        }
+        .table { color: #E5E7EB !important; margin-bottom: 0; vertical-align: middle; }
+
         .table :not(caption) > * > * {
             background-color: transparent !important;
             color: inherit !important;
-            border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+            border-bottom-color: rgba(255,255,255,0.05) !important;
             padding: 1rem 0.75rem;
         }
+
         thead th {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
@@ -225,72 +205,48 @@
             text-transform: uppercase;
             font-size: 0.8rem;
             letter-spacing: 0.05em;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+            border-bottom: 2px solid rgba(255,255,255,0.1) !important;
         }
 
-        /* Inputs Optimization */
         .form-control {
-            background-color: rgba(17, 24, 39, 0.6) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            background-color: rgba(17,24,39,0.6) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
             color: #FFFFFF !important;
             border-radius: 0.75rem;
             padding: 0.65rem 1rem;
             transition: all 0.3s ease;
         }
+
         .form-control:focus {
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.25) !important;
             border-color: #6366F1 !important;
         }
-        .form-control::placeholder {
-            color: #6B7280;
-        }
 
-        /* Glassmorphic Modals */
+        .form-control::placeholder { color: #6B7280; }
+
+        textarea.form-control { height: auto; }
+
         .modal-content {
-            background: rgba(17, 24, 39, 0.85) !important;
+            background: rgba(17,24,39,0.95) !important;
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
             border-radius: 1.5rem !important;
             color: #E5E7EB;
         }
-        .modal-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-            font-family: 'Syne', sans-serif;
-        }
 
-        /* Custom Cyberpunk Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(#6366F1, #A855F7);
-            border-radius: 20px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(#A855F7, #EC4899);
-        }
+        .modal-header { border-bottom: 1px solid rgba(255,255,255,0.05) !important; }
 
-        /* Smooth Mobile Responsiveness Layer */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(#6366F1, #A855F7); border-radius: 20px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(#A855F7, #EC4899); }
+
         @media (max-width: 991px) {
-            .sidebar {
-                left: calc(-1 * var(--sidebar-width));
-            }
-            .sidebar.active {
-                left: 0;
-            }
-            .main {
-                margin-left: 0;
-                padding: 1.5rem;
-                padding-top: 4.5rem;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
+            .sidebar { left: calc(-1 * var(--sidebar-width)); }
+            .sidebar.active { left: 0; }
+            .main { margin-left: 0; padding: 1.5rem; padding-top: 4.5rem; }
+            .mobile-menu-btn { display: block; }
             .overlay {
                 display: none;
                 position: fixed;
@@ -299,9 +255,7 @@
                 z-index: 1030;
                 backdrop-filter: blur(4px);
             }
-            .overlay.active {
-                display: block;
-            }
+            .overlay.active { display: block; }
         }
     </style>
 </head>
@@ -310,30 +264,35 @@
 <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
+<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
     <div>
         <h2 class="logo">⚡ EventFlow</h2>
         <ul class="menu">
-            <li class="active" onclick="scrollToSection('main')">Dashboard</li>
-            <li onclick="scrollToSection('eventsSection')">Events</li>
-            <li onclick="scrollToSection('usersSection')">Users</li>
-            <li onclick="scrollToSection('bookingsSection')">Bookings</li>
+            <li class="active" onclick="scrollToSection('main')">📊 Dashboard</li>
+            <li onclick="scrollToSection('eventsSection')">🎉 Events</li>
+            <li onclick="scrollToSection('usersSection')">👥 Users</li>
+            <li onclick="scrollToSection('bookingsSection')">📋 Bookings</li>
         </ul>
     </div>
-    <button class="logout-btn" onclick="logout()">Logout</button>
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
 </div>
 
-<div class="main">
+<!-- MAIN CONTENT -->
+<div class="main" id="main">
+
     <div class="topbar">
         <div>
             <h1>Admin Dashboard</h1>
-            <p>Welcome Back Admin 👋</p>
+            <p>Welcome Back Admin </p>
         </div>
+        <!-- ✅ Opens modal -->
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal">
             <i class="fa-solid fa-plus me-2"></i>Add Event
         </button>
     </div>
 
+    <!-- STATS -->
     <div class="stats-grid">
         <div class="card stat-card">
             <h3 id="totalUsers">0</h3>
@@ -349,13 +308,15 @@
         </div>
     </div>
 
+    <!-- CHART -->
     <div class="card mt-4">
         <h3 class="mb-4">Analytics</h3>
-        <div style="position: relative; width: 100%; max-height: 350px;">
+        <div style="position:relative; width:100%; max-height:350px;">
             <canvas id="bookingChart"></canvas>
         </div>
     </div>
 
+    <!-- EVENTS TABLE -->
     <div class="card mt-4" id="eventsSection">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h3>Events</h3>
@@ -365,122 +326,328 @@
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Location</th>
-                        <th>Capacity</th>
-                        <th>Actions</th>
+                        <th>ID</th><th>Title</th><th>Location</th><th>Capacity</th><th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="eventTableBody">
-                    </tbody>
+                <tbody id="eventTableBody"></tbody>
             </table>
         </div>
     </div>
 
+    <!-- USERS TABLE -->
     <div class="card mt-4" id="usersSection">
         <h3 class="mb-3">Users</h3>
         <div class="table-responsive">
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="userTableBody">
-                    </tbody>
+                <tbody id="userTableBody"></tbody>
             </table>
         </div>
     </div>
 
+    <!-- BOOKINGS TABLE -->
     <div class="card mt-4" id="bookingsSection">
         <h3 class="mb-3">Bookings</h3>
         <div class="table-responsive">
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Event</th>
-                        <th>Time</th>
-                        <th>Action</th>
+                        <th>ID</th><th>User</th><th>Event</th><th>Time</th><th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="bookingTableBody">
-                    </tbody>
+                <tbody id="bookingTableBody"></tbody>
             </table>
         </div>
     </div>
+
 </div>
 
+<!-- ✅ CREATE EVENT MODAL -->
 <div class="modal fade" id="eventModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title fw-bold text-white">Add New Event</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-toggle="modal" data-bs-target="#eventModal"></button>
+                <h5 class="modal-title fw-bold" style="color:#fff;">Add New Event</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <input type="text" id="title" class="form-control mb-3" placeholder="Title">
-                <input type="text" id="location" class="form-control mb-3" placeholder="Location">
-                <input type="date" id="date" class="form-control mb-3">
-                <input type="number" id="capacity" class="form-control mb-3" placeholder="Capacity">
-                <textarea id="description" class="form-control mb-4" placeholder="Description" rows="3"></textarea>
-                <button class="btn btn-primary w-100 py-2.5" onclick="createEvent()">Create Event</button>
+                <input  type="text"   id="title"       class="form-control mb-3" placeholder="Title">
+                <input  type="text"   id="location"    class="form-control mb-3" placeholder="Location">
+                <input  type="date"   id="date"        class="form-control mb-3">
+                <input  type="number" id="capacity"    class="form-control mb-3" placeholder="Capacity">
+                <textarea             id="description" class="form-control mb-4" placeholder="Description" rows="3"></textarea>
+
+                <!-- ✅ FIXED: submitCreateEvent — no browser conflict -->
+                <button id="createEventBtn" class="btn btn-primary w-100 py-2" onclick="submitCreateEvent()">
+                    Create Event
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/js/admin.js"></script>
+<!-- Scripts — Bootstrap first, then our JS inline -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-// Mobile Sidebar Toggle Logic
+// ─────────────────────────────────────────
+// AUTH GUARD
+// ─────────────────────────────────────────
+const token = localStorage.getItem("token");
+if (!token) {
+    alert("Please Login First");
+    window.location.href = "login.html";
+}
+
+let allEvents = [];
+
+// ─────────────────────────────────────────
+// STATS
+// ─────────────────────────────────────────
+async function loadStats() {
+    try {
+        const res   = await fetch("/api/admin/stats", {
+            headers: { Authorization: "Bearer " + token }
+        });
+        const stats = await res.json();
+        document.getElementById("totalUsers").innerText    = stats.totalUsers    || 0;
+        document.getElementById("totalEvents").innerText   = stats.totalEvents   || 0;
+        document.getElementById("totalBookings").innerText = stats.totalBookings || 0;
+    } catch (e) { console.error("Stats error:", e); }
+}
+
+// ─────────────────────────────────────────
+// EVENTS
+// ─────────────────────────────────────────
+async function loadEvents() {
+    try {
+        const res    = await fetch("/api/admin/events", {
+            headers: { Authorization: "Bearer " + token }
+        });
+        allEvents    = await res.json();
+        renderEvents(allEvents);
+    } catch (e) { console.error("Load events error:", e); }
+}
+
+function renderEvents(events) {
+    if (events.length === 0) {
+        document.getElementById("eventTableBody").innerHTML =
+            `<tr><td colspan="5" class="text-center">No Events Found</td></tr>`;
+        return;
+    }
+    document.getElementById("eventTableBody").innerHTML = events.map(ev => `
+        <tr>
+            <td>${ev.id}</td>
+            <td>${ev.title}</td>
+            <td>${ev.location}</td>
+            <td>${ev.capacity}</td>
+            <td>
+                <button class="btn btn-warning btn-sm me-2" onclick="editEvent(${ev.id})">Edit</button>
+                <button class="btn btn-danger  btn-sm"      onclick="deleteEvent(${ev.id})">Delete</button>
+            </td>
+        </tr>`).join("");
+}
+
+function searchEvent(query) {
+    query = query.toLowerCase();
+    renderEvents(allEvents.filter(ev =>
+        String(ev.id).toLowerCase().includes(query) ||
+        String(ev.title).toLowerCase().includes(query) ||
+        String(ev.location).toLowerCase().includes(query)
+    ));
+}
+
+// ─────────────────────────────────────────
+// ✅ CREATE EVENT  (renamed — avoids browser built-in conflict)
+// ─────────────────────────────────────────
+async function submitCreateEvent() {
+    const title       = document.getElementById("title").value.trim();
+    const location    = document.getElementById("location").value.trim();
+    const date        = document.getElementById("date").value.trim();
+    const capacity    = document.getElementById("capacity").value.trim();
+    const description = document.getElementById("description").value.trim();
+
+    if (!title || !location || !date || !capacity) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    const btn = document.getElementById("createEventBtn");
+    btn.disabled   = true;
+    btn.innerText  = "Creating...";
+
+    try {
+        const res = await fetch("/api/admin/events", {
+            method:  "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization:  "Bearer " + token
+            },
+            body: JSON.stringify({
+                title, location, date, capacity, description,
+                createdBy: localStorage.getItem("userEmail")
+            })
+        });
+
+        if (res.ok) {
+            alert("Event Created Successfully 🔥");
+
+            // Close modal
+            bootstrap.Modal.getInstance(
+                document.getElementById("eventModal")
+            ).hide();
+
+            // Clear form
+            ["title","location","date","capacity","description"]
+                .forEach(id => document.getElementById(id).value = "");
+
+            loadEvents();
+            loadStats();
+        } else {
+            let msg = "Failed to create event.";
+            try { const d = await res.json(); if (d.message) msg = d.message; } catch(_) {}
+            alert(msg);
+        }
+    } catch (e) {
+        console.error("Create event error:", e);
+        alert("Server error. Please try again.");
+    } finally {
+        btn.disabled  = false;
+        btn.innerText = "Create Event";
+    }
+}
+
+// ─────────────────────────────────────────
+// EDIT EVENT
+// ─────────────────────────────────────────
+async function editEvent(id) {
+    const title       = prompt("Enter new title");
+    const location    = prompt("Enter new location");
+    const date        = prompt("Enter new date (YYYY-MM-DD)");
+    const capacity    = prompt("Enter capacity");
+    const description = prompt("Enter description");
+
+    if (!title || !location || !date || !capacity) {
+        alert("All fields are required."); return;
+    }
+
+    try {
+        const res = await fetch(`/api/admin/events/${id}`, {
+            method:  "PUT",
+            headers: { "Content-Type": "application/json", Authorization: "Bearer " + token },
+            body:    JSON.stringify({ title, location, date, capacity, description })
+        });
+        res.ok ? (alert("Event Updated 🔥"), loadEvents()) : alert("Failed to update event.");
+    } catch (e) { alert("Server Error"); }
+}
+
+// ─────────────────────────────────────────
+// DELETE EVENT
+// ─────────────────────────────────────────
+async function deleteEvent(id) {
+    if (!confirm("Delete this event?")) return;
+    try {
+        const res = await fetch(`/api/admin/events/${id}`, {
+            method: "DELETE", headers: { Authorization: "Bearer " + token }
+        });
+        if (res.ok) { alert("Event Deleted"); loadEvents(); loadStats(); }
+        else { const d = await res.json().catch(()=>({})); alert(d.message || "Delete Failed"); }
+    } catch (e) { alert("Server Error"); }
+}
+
+// ─────────────────────────────────────────
+// USERS
+// ─────────────────────────────────────────
+async function loadUsers() {
+    try {
+        const res   = await fetch("/api/admin/users", { headers: { Authorization: "Bearer " + token } });
+        const users = await res.json();
+        document.getElementById("userTableBody").innerHTML = users.map(u => `
+            <tr>
+                <td>${u.id}</td><td>${u.name}</td><td>${u.email}</td><td>${u.role}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="deleteUser(${u.id})">Delete</button></td>
+            </tr>`).join("");
+    } catch (e) { console.error("Load users error:", e); }
+}
+
+async function deleteUser(id) {
+    if (!confirm("Delete this user?")) return;
+    try {
+        const res = await fetch(`/api/admin/users/${id}`, {
+            method: "DELETE", headers: { Authorization: "Bearer " + token }
+        });
+        if (res.ok) { alert("User Deleted"); loadUsers(); loadStats(); }
+        else { const d = await res.json().catch(()=>({})); alert(d.message || "Delete Failed"); }
+    } catch (e) { alert("Server Error"); }
+}
+
+// ─────────────────────────────────────────
+// BOOKINGS
+// ─────────────────────────────────────────
+async function loadBookings() {
+    try {
+        const res      = await fetch("/api/admin/bookings", { headers: { Authorization: "Bearer " + token } });
+        const bookings = await res.json();
+        document.getElementById("bookingTableBody").innerHTML = bookings.map(b => `
+            <tr>
+                <td>${b.id}</td><td>${b.userEmail}</td><td>${b.eventTitle}</td><td>${b.bookingTime}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="deleteBooking(${b.id})">Delete</button></td>
+            </tr>`).join("");
+    } catch (e) { console.error("Load bookings error:", e); }
+}
+
+async function deleteBooking(id) {
+    if (!confirm("Delete this booking?")) return;
+    try {
+        const res = await fetch(`/api/admin/bookings/${id}`, {
+            method: "DELETE", headers: { Authorization: "Bearer " + token }
+        });
+        if (res.ok) { alert("Booking Deleted"); loadBookings(); loadStats(); }
+        else { const d = await res.json().catch(()=>({})); alert(d.message || "Delete Failed"); }
+    } catch (e) { alert("Server Error"); }
+}
+
+// ─────────────────────────────────────────
+// LOGOUT
+// ─────────────────────────────────────────
+function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+}
+
+// ─────────────────────────────────────────
+// SIDEBAR & NAVIGATION
+// ─────────────────────────────────────────
 function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
 }
 
-// Smooth Section Navigation Logic 
 function scrollToSection(id) {
-    const element = document.getElementById(id) || document.querySelector('.' + id);
-    if(element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    // Mobile view fallback closure
-    if(window.innerWidth <= 991) {
-        toggleSidebar();
-    }
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (window.innerWidth <= 991) toggleSidebar();
 }
 
-// Neon Theme Colored Chart Setup
+// ─────────────────────────────────────────
+// CHART
+// ─────────────────────────────────────────
 const ctx = document.getElementById("bookingChart");
-if(ctx){
+if (ctx) {
     new Chart(ctx, {
         type: "bar",
         data: {
             labels: ["Users", "Events", "Bookings"],
             datasets: [{
                 label: "Platform Metrics",
-                data: [12, 19, 7],
-                backgroundColor: [
-                    'rgba(99, 102, 241, 0.6)',
-                    'rgba(168, 85, 247, 0.6)',
-                    'rgba(236, 72, 153, 0.6)'
-                ],
-                borderColor: [
-                    '#6366F1',
-                    '#A855F7',
-                    '#EC4899'
-                ],
+                data: [0, 0, 0],
+                backgroundColor: ["rgba(99,102,241,0.6)", "rgba(168,85,247,0.6)", "rgba(236,72,153,0.6)"],
+                borderColor:     ["#6366F1", "#A855F7", "#EC4899"],
                 borderWidth: 2,
                 borderRadius: 6
             }]
@@ -488,16 +655,22 @@ if(ctx){
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: { labels: { color: '#9CA3AF', font: { family: 'Plus Jakarta Sans' } } }
-            },
+            plugins: { legend: { labels: { color: "#9CA3AF", font: { family: "Plus Jakarta Sans" } } } },
             scales: {
-                y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#9CA3AF' } },
-                x: { grid: { display: false }, ticks: { color: '#9CA3AF' } }
+                y: { grid: { color: "rgba(255,255,255,0.05)" }, ticks: { color: "#9CA3AF" } },
+                x: { grid: { display: false }, ticks: { color: "#9CA3AF" } }
             }
         }
     });
 }
+
+// ─────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────
+loadStats();
+loadEvents();
+loadUsers();
+loadBookings();
 </script>
 </body>
 </html>
